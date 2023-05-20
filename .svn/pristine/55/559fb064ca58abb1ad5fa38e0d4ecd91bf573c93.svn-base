@@ -1,0 +1,14 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../../html/header.html" %>
+<body id="">
+<%@include file="../../menu/header.jsp" %>
+
+    <p>下記のユーザーを登録します</p>
+    <p>
+    	入力内容エラー
+    </p>
+    <a href="/UserRegistration/RegisterUser">戻る</a>
+
+<%@include file="../../menu/footer.jsp" %>
+<%@include file="../../html/footer.html" %>

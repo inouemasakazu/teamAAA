@@ -1,0 +1,36 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+
+	<h1>作品検索</h1>
+	<div class="">
+		<form action="../action/MedSearch.action" method="post">
+			タイトル検索:<input type="text" name="medTitle"><br>
+
+	        <label for="medGenre1">ジャンル1</label>
+			<select id="medGenre1" name="medGenre1">
+			<option value="0">0</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			</select>
+
+			<label for="medGenre2">ジャンル2</label>
+			<select id="medGenre2"  name="medGenre2">
+			<option value="0">0</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			</select>
+
+			<br>
+	        <input type="submit" value="検索">
+	    </form>
+    </div>
+
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

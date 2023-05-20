@@ -1,0 +1,52 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+
+	<h1>作品検索</h1>
+	<div class="login-form">
+		<form action="../action/MedSearch.action" method="post">
+			タイトル検索:<input type="text" name="medTitle"><br>
+
+	        <label for="medGenre1">表現形式</label>
+			<select id="medGenre1" name="medGenre1">
+			<option value="">選択なし</option>
+			<option value="洋画">洋画</option>
+			<option value="邦画">邦画</option>
+			<option value="アニメ">アニメ</option>
+			<option value="人形劇">人形劇</option>
+			<option value="その他">その他</option>
+			</select>
+
+			<label for="medGenre2">ジャンル</label>
+			<select id="medGenre2"  name="medGenre2">
+			<option value="">選択なし</option>
+			<option value="アクション">アクション</option>
+			<option value="コメディ">コメディ</option>
+			<option value="時代劇">時代劇</option>
+			<option value="成人">成人</option>
+			<option value="スポーツ">スポーツ</option>
+			<option value="ドキュメンタリー">ドキュメンタリー</option>
+			<option value="ノンフィクション">ノンフィクション</option>
+			<option value="ファンタジー">ファンタジー</option>
+			<option value="ファミリー">ファミリー</option>
+			<option value="ホラー">ホラー</option>
+			<option value="ミステリー">ミステリー</option>
+			<option value="ミュージカル">ミュージカル</option>
+			<option value="恋愛">恋愛</option>
+			<option value="歴史">歴史</option>
+			<option value="SF">SF</option>
+			</select>
+
+			<br>
+	        <input type="submit" value="検索">
+	    </form>
+    </div>
+
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

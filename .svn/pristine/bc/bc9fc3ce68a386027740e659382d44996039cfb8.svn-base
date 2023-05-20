@@ -1,0 +1,15 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="common">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	こんにちは、${ customer.login }さん
+
+	<a href="index.jsp">ホームに戻る</a>
+	<a href="user-top.jsp">ユーザーメニューに移動する</a>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

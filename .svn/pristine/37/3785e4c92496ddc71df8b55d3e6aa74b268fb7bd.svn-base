@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/* index.jspのメイン画像 */
+.first-view {
+	height: calc(100vh - 130px);
+    background-image: url(../img/movie-top.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    display: flex;
+}
+
+.first-view-text {
+    width: 100%;
+    max-width: 1300px;
+    margin-top:100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-bottom: 80px;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 3px 4px 5px #4b2c14;
+}
+
+.first-view-text h1 {
+    font-size: 56px;
+    line-height: 72px;
+}
+
+.first-view-text p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+
+/* 検索ボタン */
+.link-button-area {
+	width: 940px;
+	margin-top: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	/* display: flex; */
+}
+
+.link-button {
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 25px;
+    color: #FFF;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    background-color: #ff2d2d;
+}
+.link-button:hover {
+    background-color: #ff4747;
+}
+
+
+.search_container{
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid #999;
+  padding: 3px 10px;
+  border-radius: 20px;
+  height: 2.3em;
+  width: 265px;
+  overflow: hidden;
+}
+.search_container input[type="text"]{
+  border: none;
+  height: 2.0em;
+}
+.search_container input[type="text"]:focus {
+  outline: 0;
+}
+.search_container input[type="submit"]{
+  cursor: pointer;
+  font-family: FontAwesome;
+  border: none;
+  background: #3879D9;
+  color: #fff;
+  position: absolute;
+  width: 3.5em;
+  height: 3.0em;
+  right:0px;
+  top: -3px;
+  outline : none;
+}

@@ -1,0 +1,32 @@
+package user;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.UserBean;
+import dao.UserDAO;
+import tool.Action;
+
+// ユーザー登録処理のサーブレット
+public class UserRegisterAction extends Action{
+
+	public String execute(
+			HttpServletRequest request, HttpServletResponse response
+			) throws Exception {
+
+		HttpSession session = request.getSession();
+
+		try {
+			int line = 0;
+
+			UserBean ub = (UserBean)session.getAttribute("conf");
+			UserDAO dao = new UserDAO();
+			line = dao.register(ub);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return "../chapter-ex/user/user-register/user-register-done.jsp";
+	}
+}

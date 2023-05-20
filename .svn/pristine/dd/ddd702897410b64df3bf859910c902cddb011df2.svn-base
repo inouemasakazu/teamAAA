@@ -1,0 +1,9 @@
+package action;
+
+
+//管理者情報取得
+
+
+public class AdminPurchaseAction {
+
+}

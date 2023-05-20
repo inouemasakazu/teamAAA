@@ -1,0 +1,23 @@
+<%@page language="java" contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<main class="user">
+	<h1>新規登録ページ</h1>
+	<div class="login-form">
+		<p>登録する内容を入力してください。</p>
+		<form action="../user/UserCheck.action" method="post">
+	        ログインID:<input type="text" name="userId"><br>
+	        パスワード:<input type="password" name="userPass"><br>
+	        名前:<input type="text" name="userName"><br>
+	        <input type="submit" value="登録">
+	    </form>
+    </div>
+</main>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

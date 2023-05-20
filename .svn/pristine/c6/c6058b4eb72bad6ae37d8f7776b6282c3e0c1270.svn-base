@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+/* ユーザー関連のCSS */
+/* ユーザーメニュー */
+.account-flex {
+	margin-top: 50px;
+	display: flex;
+	align-items: flex-start;
+}
+
+.account-main {
+	background-color: #d1d1d1;
+	border-radius: 15px;
+	width: 50%;
+    margin-right: 35px;
+    padding: 20px 40px;
+}
+
+.account-main dl {
+    margin-top: 50px;
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 30px;
+}
+
+.account-main dl dt{
+    width: 65%;
+    font-weight: bold;
+}
+
+.account-main dl dd {
+    width: 35%;
+}
+
+.account-edit {
+	background-color: #d1d1d1;
+	border-radius: 15px;
+	width: 50%;
+    padding: 20px 40px;
+}
+
+.account-edit dl {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.account-edit dl dt{
+    width: 40%;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.account-edit dl dd {
+    width: 60%;
+}
+
+/* ユーザーログイン関連 */
+.login-form {
+	background-color: #d1d1d1;
+	align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 400px;
+    padding: 0 40px 50px;
+    text-align: center;
+}
+
+.login-form h2 {
+	margin-top: 50px;
+	font-size: 18px;
+}
+
+.login-form p {
+	margin-top: 30px;
+	font-size: 14px;
+}
+
+.login-form-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.btn-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.new-input {
+	margin-left: 20px;
+}
+
+/* ユーザー情報変更 */
+.user-main-2 dl {
+	max-width: 80%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.user-main-2 dl dt{
+    width: 30%;
+}
+
+.user-main-2 dl dd {
+    width: 70%;
+    font-weight: bold;
+}

@@ -1,0 +1,27 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="index">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<div class="first-view">
+		<h1>記憶に残るあの時の感動を...</h1>
+		<div class="text-area">
+			<section class="">
+				<h2>おすすめ映画</h2>
+			</section>
+			<section class="">
+				<h2>新作映画</h2>
+			</section>
+
+			<div class="link-button-area">
+            	<a  class="link-button" href="../search/search.jsp">検索</a>
+        	</div>
+		</div>
+	</div>
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,35 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@page import="bean.UserBean" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% UserBean user =(UserBean)session.getAttribute("userCode"); %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<div class="main">
+	<h1>ユーザー退会ページ</h1>
+	<div class="login-form">
+
+	    <p>ユーザー退会しますか？</p>
+	    <!-- 退会者の userCode を次のactionに飛ばします。 -->
+		<form action="../user/UserQuit.action" method="post">
+		<input type ="hidden" name="userCode"value="${user.userCode}">
+
+			${user.userName}さん
+
+			<p><input type="submit" value="退会"></p>
+		</form>
+
+		<p>退会しない</p>
+	    <a href="user-menu.jsp">ユーザーメニューに戻る</a>
+	</div>
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

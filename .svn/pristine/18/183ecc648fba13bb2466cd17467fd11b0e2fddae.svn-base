@@ -1,0 +1,79 @@
+package action;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.MediaBean;
+import dao.MediaDAO;
+import tool.Action;
+
+public class MedSearchAction extends Action {
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String medTitle = request.getParameter("medTitle");
+		String medGenre1 = request.getParameter("medGenre1");
+		String medGenre2 = request.getParameter("medGenre2");
+	    //int medGenre1 = Integer.parseInt(strGenre1);
+		//int medGenre2 = Integer.parseInt(strGenre2);
+		MediaDAO dao = new MediaDAO();
+
+		//【OK0509】ジャンルもタイトルも無い場合 ×××■
+		if((medTitle.equals("")) && (medGenre1.equals("")) && (medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search1(medTitle);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//【OK0509】ジャンルが選択され、タイトルが無い。×〇×
+		else if((medTitle.equals("")) && !(medGenre1.equals("")) && (medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search4(medGenre1,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//【OK0509】ジャンルが選択され、タイトルが無い。××〇
+		else if((medTitle.equals("")) && (medGenre1.equals("")) && !(medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search4(medGenre1,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//【OK0509】ジャンルが選択され、タイトルが無い。×〇〇 ※片方一致すれば出る（DAOでORをANDで完全一致に変更）
+		else if((medTitle.equals("")) && !(medGenre1.equals("")) && !(medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search3(medGenre1,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//【OK0509】ジャンルの未選択タイトルのみ〇××
+		else if(!(medTitle.equals("")) && (medGenre1.equals("")) && (medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search1(medTitle);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+
+		//【OK0509】ジャンルが選択されタイトルもある場合〇〇×
+		else if(!(medTitle.equals("")) && !(medGenre1.equals("")) && (medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search5(medTitle,medGenre1,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+
+		}
+		//【OK0509】ジャンルが選択されタイトルもある場合〇×〇
+		else if(!(medTitle.equals("")) && (medGenre1.equals("")) && !(medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search5(medTitle,medGenre1,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+
+		}
+		//【OK0509】全てある〇〇〇 完全一致
+		else if(!(medTitle.equals("")) && !(medGenre1.equals("")) && !(medGenre2.equals(""))) {
+			List<MediaBean>list = dao.search2(medTitle,medGenre1,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+
+
+				return"../search/search-error.jsp";
+	}
+}

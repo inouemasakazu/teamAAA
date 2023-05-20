@@ -1,0 +1,133 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@include file="../menu/header.jsp" %>
+<%@include file="../html/header.html" %>
+
+<main class="media">
+	<h1>${p.medTitle}アイアンマン</h1>
+	
+	<%-- <c:forEach var="p" items="${list}"> --%>
+			<div class="media-in-flex">
+				<div class="media-in-img">
+					<img src="../img/aronman.jpg" alt="作品画像">
+					<%-- <img src="/teamAAA/upload/${p.medImage }" alt="作品画像"> --%>
+				</div>
+				<div class="media-in-text">
+					<dl>
+						<dt>CATEGORY</dt>
+						<dd>洋画<br>アクション${p.medGenre1}<br>${p.medGenre2}</dd>
+						<dt class="dt-margin-top">発売日</dt>
+						<dd>${p.medRelease}</dd>
+						<dt class="dt-margin-top">メディアコード</dt>
+						<dd>${p.medMedia}</dd>
+						<dt class="dt-margin-top"></dt>
+						<dd></dd>
+						<dt class="dt-margin-top">登録日</dt>
+						<dd>2023/5/14${p.medDate}</dd>
+					</dl>
+					<div class="media-info-wrap">
+						<h2 class="media-info">ABOUT</h2>
+						<p class="media-info-p">
+						『アイアンマン』（英: Iron Man）は、マーベル・コミックの同名キャラクターをベースにした、2008年のアメリカのスーパーヒーロー映画。マーベル・スタジオが製作し、パラマウント・ピクチャーズが配給する、マーベル・シネマティック・ユニバース（MCU）の第1作目である。監督はジョン・ファヴロー、脚本はマーク・ファーガスとホーク・オスビー、アート・マーカムとマット・ホロウェイが務め、トニー・スターク／アイアンマン役のロバート・ダウニー・ジュニアのほか、テレンス・ハワード、ジェフ・ブリッジス、ショーン・トーブ、らが出演している。
+						</p>
+						<%-- <p>${p.medInfo}</p> --%>
+					</div>
+				</div>
+			</div>
+			
+	<%-- </c:forEach> --%>
+
+<<<<<<< .mine
+	<!-- ここからレビュー 井上 -->
+	<!-- レビュー投稿 条件分岐でログインアカウントとゲストの表示が変わります。 -->
+	
+	<!-- <div class="review-area"> -->
+		<div class="review-area-flex">
+			<div class="review-post">
+				<c:if test="${!(!empty user || !empty admin)}">
+					<p>ログインするとレビューが投稿できます。</p>
+					<a href="../user/user-login-in.jsp" class="review-post-btn">ログイン/新規登録</a>
+				</c:if>
+				<c:if test="${!empty user || !empty admin}">
+					<a href="../review/review-post-in.jsp" class="review-post-btn">レビューを書く</a>
+				</c:if>
+			</div>
+	<%-- <c:forEach var="p" items="${relist}"> --%>
+			<div class="review-list">
+				<h3>みんなのレビュー</h3>
+				<h4>${p.userName}まさ さん</h4>
+				<small>${p.reviewDate}2023/5/14に日本でレビュー済み</small>
+				<p>${p.reviewContent}MCUシリーズの原点にして頂点。エンドゲームの感動はアイアンマンから見続けてきた者にしかわかりません。</p>
+				<c:if test="${user.userName == p.userName}">
+				<form action="../review/ReviewDeleteCheck.action"  method="post">
+					<input type ="hidden" name="reviewCode" value="${p.reviewCode}">
+					<input type ="hidden" name="userName" value="${p.userName}">
+					<input type ="hidden" name="reviewContent" value="${p.reviewContent}">
+					<input type="submit" value="削除" class="review-del-btn">
+				</form>
+				</c:if>
+			</div>
+	<%-- </c:forEach> --%>
+		</div>
+		
+	<!-- </div> -->
+</main>
+||||||| .r280
+=======
+			<!--画像　<td>${p.medImage}</td> -->
+			<td><img src="/teamAAA/upload/${p.medImage }" width="350" height="350"></td>
+		</tr>
+		<tr>
+			<td>${p.medGenre1}■ ${p.medGenre2}</td>
+		</tr>
+		<tr>
+			<td>発売メディア　${p.medMedia}</td>
+		</tr>
+		<tr>
+			<td>発売日　${p.medRelease}</td>
+		</tr>
+		<tr>
+			<td>${p.medInfo}</td>
+		<tr>
+			<td>登録日　${p.medDate}</td>
+		</tr>
+	</tbody>
+</table>
+
+</c:forEach>
+
+<!-- 作品メインデータのテーブルここまで -->
+
+
+
+<!-- ここからレビュー 井上 -->
+
+<!-- レビュー投稿 条件分岐でログインアカウントとゲストの表示が変わります。 -->
+<c:if test="${!(!empty user || !empty admin)}">
+	<p>レビューを投稿するにはユーザーログインしてください。</p>
+	<a href="../user/user-login-in.jsp" class="login-area">ユーザーログイン/登録ページ</a>
+</c:if>
+<c:if test="${!empty user || !empty admin}">
+	<a href="../review/review-post-in.jsp" class="login-area">レビューを書く</a>
+</c:if>
+
+<c:forEach var="p" items="${relist}">
+	<div class="review-list">
+		<h2>${p.userName}さん</h2>
+		<p>${p.reviewDate}に日本でレビュー済み</p>
+		<p>${p.reviewContent}</p>
+		<c:if test="${user.userName == p.userName}">
+		<form action="../review/ReviewDeleteCheck.action"  method="post">
+			<input type ="hidden" name="reviewCode" value="${p.reviewCode}">
+			<input type ="hidden" name="userName" value="${p.userName}">
+			<input type ="hidden" name="reviewContent" value="${p.reviewContent}">
+			<input type="submit" value="削除">
+		</form>
+		</c:if>
+	</div>
+</c:forEach>
+>>>>>>> .r293
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,10 @@
+package action;
+
+
+
+//管理者退会処理
+
+
+public class AdminQuitAction {
+
+}

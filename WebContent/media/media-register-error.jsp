@@ -1,0 +1,20 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<div class="login-form">
+	<h1>エラーページ</h1>
+
+		${message1}
+		${message2}
+
+
+		<a href="../admin/admin-menu.jsp">メニューページに戻る</a>
+	</div>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

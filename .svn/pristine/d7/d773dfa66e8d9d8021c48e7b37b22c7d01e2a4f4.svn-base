@@ -1,0 +1,119 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+
+
+<c:forEach var="p" items="${list}">
+メディアコード:  ${p.medCode}<br>
+</c:forEach>
+
+
+
+
+
+
+★検索結果表示ページ
+
+作品一覧表示
+
+↓はサンプルです。
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- テーブルで表示するイメージ -->
+
+<table>
+
+
+<!-- インデックス部分 -->
+ <tr>
+ 	<th>No</th>
+ 	<th>Title</th>
+ 	<th>ジャンル</th>
+ 	<th>リリース日</th>
+ 	<th>情報</th>
+ 	<th>情報</th>
+ 	<th>登録日時</th>
+ </tr>
+
+
+<!-- サンプル -->
+ <tr>
+ 	<td>0001</td>
+ 	<td>黄身の名は</td>
+ 	<td>アニメ・SF</td>
+ 	<td>2022/12/31</td>
+ 	<td>DVD</td>
+ 	<td>ロシアのウクライナ侵攻による燃料・飼料価格の世界的高騰、猛威をふるう鳥インフルエンザ……日々値上がりする卵価格との闘いが今</td>
+ 	<td>2022/12/31  11:25:00</td>
+ </tr>
+
+
+ <tr>
+ 	<td>0002</td>
+ 	<td>タイタ・ニック</td>
+ 	<td>邦画（実写）・ファンタジー</td>
+ 	<td>2023/1/1</td>
+ 	<td>BD</td>
+ 	<td>あなたは助っ人外人ニックを覚えていますか…？　広島→横浜と渡り歩いたかわいいあいつがあなたのハートをストライク。</td>
+ 	<td>2023/1/1  11:25:00</td>
+ </tr>
+
+
+<!-- サンプルここまで -->
+</table>
+
+
+<br>
+<br>
+
+
+<!-- もういちど検索するドン★用検索（検索ページと同じ） -->
+
+<B>条件を変更して再検索</B>
+<br>
+タイトル（部分一致）<input type="text" name="title">
+<br>
+<input type="checkbox" value="BD">BD
+<input type="checkbox" value="DVD">DVD
+<!-- name="check"設定してないよ -->
+
+<br>
+<select name="genre1">
+	<option value="">表現</option>
+	<option value="洋画">洋画（実写）</option>
+	<option value="邦画">邦画（実写）</option>
+	<option value="アニメ">アニメーション</option>
+	<option value="その他">その他</option>
+</select>
+
+<br>
+<select name="genre2">
+	<option value="">ジャンル</option>
+	<option value="アクション">アクション</option>
+	<option value="ホラー">ホラー</option>
+	<option value="SF">SF</option>
+	<option value="コメディ">コメディ</option>
+	<option value="ラブロマンス">ラブロマンス</option>
+	<option value="ファンタジー">ファンタジー</option>
+	<option value="ドキュメンタリー">ドキュメンタリー</option>
+	<option value="バイオレンス">バイオレンス</option>
+	<option value="子供向け">子供向け</option>
+	<option value="その他">その他</option>
+</select>
+<br>
+
+<input type="submit" value="再検索">
+
+<!-- 検索フォームここまで -->
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
+

@@ -1,0 +1,51 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<main class="">
+	<h1>レビューリスト</h1>
+<br>
+<br>
+
+
+<div class="media-row">
+	<table>
+	<tbody>
+		<tr>
+			<td>レビューコード</td>
+			<td>メディアタイトル</td>
+			<td>ユーザーコード</td>
+			<td>登録日</td>
+			<td></td>
+		</tr>
+		<c:forEach var="p" items="${rlist}">
+		<tr>
+			<td>${p.reviewCode} </td>
+			<td>${p.medCode}</td>
+			<td>${p.userCode}</td>
+			<td>${p.reviewDate}</td>
+			<td><form action="../list/ReviewDelete.action" method="post">
+					 <button type="submit" name="reviewCode" value="">削除ボタン</button>
+	   			</form></td>
+		</tr>
+		<tr>
+			<td colspan="5"> レビュー内容
+</td>
+		</tr>
+			</c:forEach>
+	</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
+

@@ -1,0 +1,412 @@
+@charset "UTF-8";
+
+/* 作品検索・結果・レビュー関連のCSSをまとめています。 */
+.media {
+	max-width: 1200px;
+	margin-top: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 40px 150px;
+	color: #202020;
+}
+
+.media h1 {
+  color: #202020;
+  padding: 0.5em 0;
+  border-top: solid 3px #202020;
+  border-bottom: solid 3px #202020;
+}
+
+.media-form {
+	background-color: #d1d1d1;
+	align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 100%;
+    padding: 0 40px 50px;
+    text-align: center;
+}
+
+.media-form-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.media-form-wrap h2 {
+	margin-top: 50px;
+	font-size: 18px;
+}
+
+/* 検索入力 */
+.media-form-input dl {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.media-form-input dl dt{
+    width: 40%;
+    margin-top: 25px;
+}
+
+.media-form-input dl dd {
+    width: 60%;
+    margin-top: 25px;
+}
+
+.serch-text {
+	width: 300px;
+	height: 30px;
+	padding-left: 10px;
+	background-color: #ffffff;
+	border: 2px solid #2589d0;
+	border-radius: 3px;
+	outline: none;
+}
+
+.search-text-btn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #ffffff;
+	padding-left: 30px;
+	padding-right: 5px;
+	width: 130px;
+	height: 50px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #0075c2;
+	border-radius: 3px;
+}
+
+.search-text-btn:hover {
+	background-color: #7fbfff;
+}
+
+.serch-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 300px;
+	height: 30px;
+    padding: .4em 3.6em .4em .8em;
+    border: 2px solid #2589d0;
+    border-radius: 3px;
+    color: #333333;
+    cursor: pointer;
+}
+
+.serch-select select:focus {
+    outline: 1px solid #2589d0;
+}
+
+/* 検索結果 */
+/* 作品詳細と検索窓のflex */
+.serch-result-flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 作品詳細 */
+.serch-result-row {
+	background-color: #d1d1d1;
+	align-items: center;
+    margin-top: 50px;
+    margin-right: 50px;
+    padding: 20px;
+    width: 750px;
+}
+.serch-result-row h2 {
+	text-align: center;
+}
+
+/* 作品詳細flex */
+.media-flex {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 25px;
+}
+
+.media-img {
+	width: 20%;
+}
+
+.media-text {
+	width: 80%;
+}
+
+/* 作品説明 */
+.media-text dl {
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.media-text dt{
+    font-weight: bold;
+}
+
+.dt-margin-top {
+	margin-top: 8px;
+}
+
+.media-text dd {
+	margin-top: 5px;
+	font-size: 14px;
+    line-height: 22px;
+}
+
+.media-in-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-top: 10px;
+    margin-left: auto;
+    background-color: #ffcc99;
+    border: none;
+    border: solid 3px #ffbf7f;
+    border-radius: 3px;
+    width: 120px;
+    height: 37px;
+    font-weight: bold;
+}
+
+.media-in-btn:hover {
+	background-color: #ffe0c1;
+}
+
+/* 検索結果ページ用　検索入力 */
+.media-form-input-result dl {
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.media-form-input-result dl dt{
+    margin-top: 25px;
+}
+
+.media-form-input-result dl dd {
+    margin-top: 25px;
+}
+
+.serch-text-result {
+	width: 220px;
+	height: 35px;
+	padding-left: 10px;
+	background-color: #ffffff;
+	border: 2px solid #2589d0;
+	border-radius: 3px;
+	outline: none;
+}
+
+.search-text-btn-result {
+	width: 130px;
+	height: 50px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #0075c2;
+	border-radius: 3px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 30px;
+	padding-right: 5px;
+}
+
+.search-text-btn-result:hover {
+	background-color: #7fbfff;
+}
+
+.search-text-btn-result p {
+	color: #ffffff;
+}
+
+.serch-select-result select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 220px;
+	height: 35px;
+    padding: .4em 3.6em .4em .8em;
+    border: 2px solid #2589d0;
+    border-radius: 3px;
+    color: #333333;
+    cursor: pointer;
+}
+
+.serch-select-result select:focus {
+    outline: 1px solid #2589d0;
+}
+
+/* 詳細ページ */
+/* 詳細flex */
+.media-in-flex {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #9f9f9f;
+}
+
+.media-in-img {
+	width: 35%;
+}
+
+.media-in-text {
+	width: 65%;
+}
+
+/* 作品説明 */
+.media-in-text {
+    padding-left: 40px;
+}
+
+.media-in-text dt{
+	font-size: 18px;
+    font-weight: bold;
+}
+
+.media-in-text .dt-margin-top {
+	margin-top: 11px;
+}
+
+.media-in-text dd {
+	margin-top: 5px;
+	font-size: 16px;
+    line-height: 22px;
+}
+
+.media-info-wrap {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.media-info {
+	font-size: 22px;
+	margin-top: 50px;
+}
+
+.media-info-p {
+	font-size: 18px;
+	line-height: 30px;
+	margin-top: 25px;
+}
+
+/* レビューエリア */
+.review-area {
+	margin-top: 50px;
+
+}
+
+.review-area-flex {
+	margin-top: 50px;
+	padding-left: 40px;
+	display: flex;
+}
+
+.review-list-area {
+	margin-top: 20px;
+	max-width: 700px;
+	margin-left: 60px;
+	padding-bottom: 10px;
+}
+
+.review-list-area h3 {
+	font-size: 25px;
+}
+
+.review-list {
+	margin-top: 20px;
+	width: 700px;
+	margin-left: 60px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #9f9f9f;
+}
+
+.review-list h4 {
+	margin-top: 20px;
+	font-size: 23px;
+}
+
+small {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.review-list p {
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+/* レビュー削除ボタン */
+.review-del-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-top: 6px;
+    margin-left: auto;
+    color: #ffffff;
+    background-color: #ff2d2d;
+    border: none;
+    border-radius: 3px;
+    width: 95px;
+    height: 30px;
+    font-weight: bold;
+}
+
+.review-del-btn:hover {
+	background-color: #ff4747;
+}
+
+/* レビューからのログインbtn */
+.review-post {
+	margin-top: 20px;
+	max-width: 700px;
+}
+
+.review-post-btn {
+	margin-top: 17px;
+	background-color: #0075c2;
+	color: #ffffff;
+	border: none;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+    width: 180px;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+.review-post-btn:hover {
+    background-color: #7fbfff;
+}
+
+/* レビュー投稿ページ */
+.review-post-in {
+	margin-top: 50px;
+	width:600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.review-post-in p {
+	margin-top: 10px;
+}
+
+textarea {
+	margin-top: 5px;
+	width: 100%;
+	height:200px;
+	resize:none;
+	padding:10px;
+	font-size:16px;
+	color:#000000;
+}

@@ -1,0 +1,34 @@
+package list;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.UserBean;
+import dao.UserDAO;
+import tool.Action;
+
+public class UserListAction extends Action {
+
+	//できた0511kuma
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String userCode = request.getParameter("userCode");
+
+		UserDAO dao = new UserDAO();
+
+		if((userCode.equals(""))) {
+			List<UserBean>list = dao.userlist(userCode);
+			request.setAttribute("ulist",list);
+
+			//あとでJSPのページ～
+			return "../commonlist/userlist.jsp";
+		}
+
+				//戻りJSPのページいれて～
+				return"../common/index.jsp";
+	}
+}

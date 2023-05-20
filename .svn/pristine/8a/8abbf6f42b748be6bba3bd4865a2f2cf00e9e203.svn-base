@@ -1,0 +1,21 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	■仮置きページ<br>
+<br>
+<br>
+
+何かのエラーです。<br>
+<br>
+<br>
+<!--下のやつ適切な方を残してくれ  -->
+<input type="button" onclick="location.href='./index.html'" value="指定のページに戻る">
+<input type="button" onclick="history.back()" value="前のページに戻る">
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

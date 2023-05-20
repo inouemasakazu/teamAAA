@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/* index.jspのメイン画像エリア */
+.first-view {
+	height: calc(100vh - 130px);
+    background-image: url(../img/movie-top.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    display: flex;
+}
+
+.index-warp {
+	display: flex;
+	flex-direction: column;	
+	width: 100%;
+    max-width: 1300px;
+    margin-top:100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.first-view-text {
+    padding-left: 40px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.first-view-text h1 {
+    font-size: 56px;
+    line-height: 72px;
+    text-shadow: 3px 4px 5px #4b2c14;
+}
+
+.first-view-text p {
+    font-size: 18px;
+    margin-top: 20px;
+    text-shadow: 3px 4px 5px #4b2c14;
+}
+
+/* indexページ検索ボタンエリア */
+.search-view {
+    margin-top:auto;
+    margin-bottom: 50px;
+    color: #202020;
+	display: flex;
+	justify-content: center;
+}
+
+.search-button-area {
+	width: 940px;
+	height: 50px;
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 5px;
+}
+
+.search-button-1 {
+	width: 50%;
+	height: 100%;
+	font-weight: bold;
+	background-color: #ffcc99;
+	border-radius: 5px 0 0 5px;
+	border: solid 3px #ffbf7f;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.search-button-1:hover {
+	background-color: #ffe0c1;
+}
+
+.search-button-2 {
+	width: 50%;
+	height: 100%;
+	font-weight: bold;
+	background-color: #ffffff;
+	border-radius: 0 5px 5px 0;
+	border: solid 3px #0075c2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.search-button-2con {
+	width: 90%;
+	height: 100%;
+	padding-left: 10px;
+	background-color: #ffffff;
+	border: none;
+	outline: none;
+}
+
+.search-button-2btn {
+	width: 11%;
+	height: 100%;
+	background-color: #0075c2;
+}
+
+.search-button-2btn:hover {
+	background-color: #7fbfff;
+}

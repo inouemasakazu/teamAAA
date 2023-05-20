@@ -1,0 +1,52 @@
+package user;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.UserBean;
+import dao.UserDAO;
+import tool.Action;
+
+// ユーザー登録処理のサーブレット
+public class UserRegisterAction extends Action{
+
+	public String execute(
+			HttpServletRequest request, HttpServletResponse response
+			) throws Exception {
+
+		HttpSession session = request.getSession();
+
+		try {
+			int line = 0;
+
+			UserBean ub = (UserBean)session.getAttribute("conf");
+			UserDAO dao = new UserDAO();
+			line = dao.register(ub);
+
+			// 登録エラー
+			if (line == 0) {
+				String txt1 = "データベースエラーが発生しました。";
+				String txt2 = "登録手続きをもう一度お願いします。";
+
+				request.setAttribute("message", txt1);
+				request.setAttribute("message", txt2);
+
+				return "../user/user-register-error.jsp";
+			}
+		} catch (Exception e) {
+			// 例外エラー
+			String txt1 = "原因不明のエラーが発生しました。";
+			String txt2 = "登録手続きをもう一度お願いします。";
+
+			request.setAttribute("message", txt1);
+			request.setAttribute("message", txt2);
+
+			return "../user/user-register-error.jsp";
+		}
+
+		// ユーザー登録が完了
+		return "../user/user-register-out.jsp";
+	}
+
+}

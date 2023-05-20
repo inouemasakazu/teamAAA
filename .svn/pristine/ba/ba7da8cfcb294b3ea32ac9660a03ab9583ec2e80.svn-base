@@ -1,0 +1,10 @@
+package action;
+
+
+
+//レビュー選択処理
+
+
+public class AdminReviewSelectAction {
+
+}

@@ -1,0 +1,28 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<main class="">
+	<h1>投稿レビュー一覧</h1>
+<br>
+<br>
+
+	<c:forEach var="p" items="${rlist}">
+<div class="media-row">
+	レビュー内容　■　${p.reviewContent} <BR>
+	登録日　■　${p.reviewDate}  <BR>
+	<td>
+		<form action="../review/ReviewDeleteList.action" method="post">
+			<button type="submit" name="reviewCode" value="${p.reviewCode}">削除ボタン</button>
+		</form>
+	</td>
+</div>
+	</c:forEach>
+
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
+

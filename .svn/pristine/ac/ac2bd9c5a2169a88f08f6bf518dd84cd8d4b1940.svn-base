@@ -1,0 +1,33 @@
+package action;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.MediaBean;
+import bean.ReviewBean;
+import dao.MediaDAO;
+import dao.ReviewDAO;
+import tool.Action;
+
+public class MedPageAction extends Action {
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String medCode = request.getParameter("medCode");
+
+		MediaDAO dao = new MediaDAO();
+		ReviewDAO redao = new ReviewDAO();
+
+		if(!(medCode.equals(""))) {
+			List<MediaBean>list = dao.medpage(medCode);
+			List<ReviewBean>relist = redao.medpageReview(medCode);
+			request.setAttribute("list",list);
+			request.setAttribute("relist",relist);
+			return "../media/mediapage.jsp";
+		}else
+				return"../search/search-result.jsp";
+	}
+}

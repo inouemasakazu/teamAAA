@@ -1,0 +1,33 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@page import="bean.MediaBean" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% MediaBean user =(MediaBean)session.getAttribute("medCode"); %>
+
+<%@include file="../html/header.html" %>
+<body id="common">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+
+
+<!--テキストボックスのサイズはCSSで指定できるそうですわよ  -->
+
+ <div class="review">
+     <p >レビュー投稿フォーム（全角100文字以内）</p>
+     <textarea cols="100" rows="8"name="review"></textarea>
+   </div>
+
+
+<input type="button" onclick="history.back()" value="戻る">
+<form action="../review/ReviewRegister.action" method="post">
+<input type="submit" value="投稿内容確認">
+
+
+
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

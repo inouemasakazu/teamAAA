@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="../html/header.html" %>
+<p class = "p3"></p>
+<center>
+<br>
+<br>
+<br>
+<font size="7">
+作品を登録致しました。</font><br>
+<br>
+<br>
+<br>
+<br>
+<p class = "p3"></p>
+<font size="5">
+<a href="index.jsp">TOPへ戻る</font></a>
+</center>
+<%@include file="../html/footer.html" %>

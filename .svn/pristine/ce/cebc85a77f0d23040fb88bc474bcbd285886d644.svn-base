@@ -1,0 +1,55 @@
+package bean;
+
+public class ReviewBean implements java.io.Serializable {
+	private String reviewCode;
+	private String medCode;
+	private String userCode;
+	private String reviewContent;
+	private int reviewDelete;
+	private String reviewDate;
+
+	public String getreviewCode() {
+		return reviewCode;
+	}
+	public String getmedCode() {
+		return medCode;
+	}
+	public String getuserCode() {
+		return userCode;
+	}
+	public String getreviewContent() {
+		return reviewContent;
+	}
+	public int getreviewDelete() {
+		return reviewDelete;
+	}
+	public String getreviewDate() {
+		return reviewDate;
+	}
+
+	public void setreviewCode(String reviewCode) {
+		this.reviewCode = reviewCode;
+
+    }
+	public void setmedCode(String medCode) {
+		this.medCode = medCode;
+	}
+	public void setuserCode(String userCode) {
+		this.userCode = userCode;
+	}
+	public void setreviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
+	}
+	public void setuserName(int reviewDelete) {
+		this.reviewDelete = reviewDelete;
+	}
+	public void setreviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+
+
+
+
+
+
+}

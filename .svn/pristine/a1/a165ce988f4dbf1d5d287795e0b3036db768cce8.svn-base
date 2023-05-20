@@ -1,0 +1,10 @@
+package action;
+
+
+
+//レビュー削除処理
+
+
+public class AdminReviewDeleteAction {
+
+}

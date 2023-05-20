@@ -1,0 +1,55 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<!-- つかわないかも -->
+
+
+<div class="main">
+
+<!--ログインしているユーザーの投稿したレビューが並んでいる気持ち  -->
+
+<table>
+
+<!-- ここタイトル -->
+
+ <tr>
+ 	<th>No</th>
+ 	<th>Title</th>
+ 	<th>レビュー</th>
+ 	<th>登録日時</th>
+ 	<th></th>
+ </tr>
+
+
+<!--　入力サンプル  -->
+
+ <tr>
+ 	<td>0001</td>
+ 	<td>黄身の名は</td>
+ 	<td>卵アレルギーなのでみているだけで震えました</td>
+ 	<td>2022/12/31  11:25:00</td>
+ 	<td>削除</td>
+ </tr>
+
+
+ <tr>
+ 	<td>0002</td>
+ 	<td>劇場版どらえもん　のび太と賢者の石</td>
+ 	<td>子供の頃よくみてました</td>
+ 	<td>2022/12/31  11:25:00</td>
+ 	<td>削除</td>
+ </tr>
+
+<!--サンプルここまで  -->
+
+</table>
+
+
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@include file="../menu/header.jsp" %>
+    <%@include file="../html/header.html" %>
+<!DOCTYPE html>
+
+<h2>作品登録</h2>
+<br>
+<br>
+<p>登録情報を記入してください。</p>
+<form action = "MediaRegister.action"  method = "post"enctype="multipart/form-data">
+<br>
+	<p>タイトル:<input type ="text" name ="med_title"></p>
+	<p>メディア:<select name ="med_media"></p>
+	<option value="1">BD</option>
+	<option value="2">DVD</option>
+	</select></p>
+	<p>作品情報:<input type ="text" name ="med_info"></p>
+	<p>リリース年:<input type ="date" name ="med_release"></p>
+	<p>ジャンル1:<select name ="med_genre1"></p>
+	<option value="1">邦画</option>
+	<option value="2">アニメ</option>
+	<option value="3">洋画</option>
+	</select></p>
+	<p>ジャンル2:<select name ="med_genre2"></p>
+	<option value="1">ホラー</option>
+	<option value="2">アクション</option>
+	</select></p>
+<br>
+<br>
+<br>
+<input type = "reset" value="入力取り消し">
+<br>
+<input type = "submit" value = "登録">
+</form>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,29 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+
+
+★レビュー削除確認
+<table >
+<tr>
+<td>作品タイトル</td>
+<td>削除するレビュー本文</td>
+<td>ニックネーム</td>
+</tr>
+</table>
+<br>
+以上のレビューを削除しますか？
+<br>
+<br>
+
+
+<input type="button" onclick="history.back()" value="選びなおす">
+<input type="submit" value="投稿">
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

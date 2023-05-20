@@ -1,0 +1,177 @@
+package dao;
+
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import bean.AdminBean;
+
+
+public class AdminDAO extends DAO{
+	//管理者ログイン
+	public AdminBean adminLogin(String login, String password) throws Exception {
+		AdminBean admin = null;
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"select * from admin where adminId=? and adminPass=?");
+			st.setString(1,login);
+		    st.setString(2, password);
+
+		    try {
+		    ResultSet rs=st.executeQuery();
+		    while (rs.next()) {
+		    	AdminBean aab = new AdminBean();
+		    	aab.setadminCode(rs.getString("usAccount"));
+		    	aab.setadminId(rs.getString("adminId"));
+		    	aab.setadminPass(rs.getString("adminPass"));
+		    	aab.setadminName(rs.getString("adminName"));
+		    	aab.setadminDelete(rs.getInt("usdelete"));
+		    	aab.setadminDate(rs.getString("adminDate"));
+
+			 }
+			 return admin;
+
+		    }catch (Exception e) {
+		    	throw e;
+		    }finally {
+		    	st.close();
+		    	con.close();
+		    }
+	}
+
+//	//管理者ニックネーム検索
+//	public List<AdminBean>searchAdminNickname(String adminname)throws
+//		Exception{
+//		List<AdminBean> list = new ArrayList<AdminBean>();
+//		Connection con = getConnection();
+//		PreparedStatement st = con.prepareStatement(
+//				"select * from admin us where  usNickname like ?");
+//		st.setNString(1,"%"+adminname + "%");
+//		try {
+//			ResultSet rs = st.executeQuery();
+//			while(rs.next()) {
+//				AdminBean ab = new AdminBean();
+//		    	ab.setadminCode(rs.getString("usAccount"));
+//		    	ab.setadminId(rs.getString("adminId"));
+//		    	ab.setadminPass(rs.getString("adminPass"));
+//		    	ab.setadminName(rs.getString("adminName"));
+////		    	ab.setUsDelete(rs.getInt("usdelete"));
+//		    	ab.setadminDate(rs.getString("adminDate"));
+//
+//			}
+//			return list;
+//
+//		}catch (Exception e) {
+//			throw e;
+//		}finally {
+//			st.close();
+//			con.close();
+//		}
+//	}
+
+//	//管理者アカウントコード検索
+//	public int searchAdminAccount(String usAccount) throws
+//Exception{
+//		List<AdminBean> list = new ArrayList<AdminBean>();
+//		Connection con = getConnection();
+//		PreparedStatement st = con.prepareStatement(
+//				"select * from usAccount where usDelete = 0 and usAccount =?");
+//		st.setNString(1, usAccount);
+//		try {
+//			ResultSet rs  = st.executeQuery();
+//			while(rs.next()) {
+//				AdminBean ab = new AdminBean();
+//				ab.setadminCode(rs.getString("usAccount"));
+//		    	ab.setadminId(rs.getString("adminId"));
+//		    	ab.setadminPass(rs.getString("adminPass"));
+//		    	ab.setadminName(rs.getString("adminName"));
+////		    	ab.setUsDelete(rs.getInt("usdelete"));
+//		    	ab.setadminDate(rs.getString("adminDate"));
+//
+//		    	list.add(ab);
+//			}
+//			return list;
+//		}
+//
+//		}catch (Exception e) {
+//			throw e;
+//		} finally {
+//			st.close();
+//			con.close();
+//
+//		}
+
+	//管理者新規登録
+	public int register(AdminBean ab) throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"insert into admin values(null,?,?,?,1,now()");
+		try {
+			  //st.setString(1,rb.getadminCode()) = null;
+			st.setString(1,ab.getadminId());
+			st.setString(2,ab.getadminPass());
+			st.setString(3,ab.getadminName());
+//			st.setInt(4,ab.getadminDelete());
+//			st.setString(5,ab.getadminDate());
+			int line = st.executeUpdate();
+
+			return line;
+			}catch(Exception e) {
+				throw e;
+			}finally {
+				st.close();
+				con.close();
+			}
+
+		}
+
+//管理者削除
+	public int delete(AdminBean ab1)throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"update admin set adminDelete = 1 where adminCode = ? and adminName = ?;");
+		try {
+			st.setString(1,ab1.getadminCode());
+			st.setString(2,ab1.getadminName());
+			int line = st.executeUpdate();
+
+		return line;
+
+		}catch (Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+	}
+}
+
+
+
+	//ユーザーアカウントの変更
+	public int update(AdminBean uab4) throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+		"update usAccount set usID=?,usPass =?,usNickname =? whereusAccount = ?;");
+
+		try {
+			st.setNString(1,uab4 getUsID());
+			st.setNString(2,uab4 getUsPass());
+			st.setNString(3,uab4 getUsNickname());
+			st.setInt(4,uab4.getUsAccount());
+			int line = st.executeUpdate();
+
+			return line;
+
+			)catch(Exception e) {
+				int i =0;
+				return i;
+				//throw e;
+			}finally {
+				st.close();
+				con.close();
+
+			}
+			}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+
+<style type="text/css">
+	<%@include file="../css/common.css" %>
+	<%@include file="../css/index.css" %>
+	<%@include file="../css/user.css" %>
+	<%@include file="../css/admin.css" %>
+</style>
+<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>

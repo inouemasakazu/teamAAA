@@ -1,0 +1,78 @@
+package action;
+
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import bean.MediaBean;
+import dao.MediaDAO;
+import tool.Action;
+
+public class MedSearchAction extends Action {
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String medTitle = request.getParameter("medTitle");
+		String strGenre1 = request.getParameter("medGenre1");
+		String strGenre2 = request.getParameter("medGenre2");
+	    int medGenre1 = Integer.parseInt(strGenre1);
+		int medGenre2 = Integer.parseInt(strGenre2);
+		MediaDAO dao = new MediaDAO();
+
+		//ジャンルもタイトルも無い場合
+		if(medGenre1 ==0 && medTitle == "") {
+			List<MediaBean>list = dao.search1(medTitle);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//ジャンルが選択されタイトルもある場合
+		else if (medGenre1 !=0 && !(medTitle.equals(""))) {
+			List<MediaBean>list = dao.search3(medTitle,medGenre1);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+
+		}
+		//ジャンルが選択され、タイトルが無い。
+		else if (medGenre1 !=0 && medTitle == "") {
+			List<MediaBean>list = dao.search3(medTitle, medGenre1);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//ジャンルの未選択タイトルのみ
+		//else if (medGenre1 !=0 && !(medTitle.equals("")) ) {
+		//List<MediaBean>list = dao.search3(medTitle, medGenre1);
+		else if (!(medTitle.equals("")) ) {
+			List<MediaBean>list = dao.search1(medTitle);
+
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		if(medGenre2 ==0 && medTitle == "") {
+			List<MediaBean>list = dao.search1(medTitle);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//ジャンルが選択されタイトルもある場合
+		else if (medGenre2 !=0 && !(medTitle.equals("")) ) {
+			List<MediaBean>list = dao.search3(medTitle,medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+
+		}
+		//ジャンルが選択され、タイトルが無い。
+		else if (medGenre2 !=0 && medTitle == "") {
+			List<MediaBean>list = dao.search3(medTitle, medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+		//ジャンルの未選択タイトルのみ
+		else if (medGenre2 !=0 && !(medTitle.equals("")) ) {
+			List<MediaBean>list = dao.search3(medTitle, medGenre2);
+			request.setAttribute("list",list);
+			return "../search/search-result.jsp";
+		}
+
+
+				return"../search/search-error.jsp";
+	}
+}

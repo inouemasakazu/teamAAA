@@ -1,0 +1,393 @@
+package dao;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.MediaBean;
+
+
+public class MediaDAO extends DAO{
+
+
+//メディア情報検索　タイトルのみ部分一致　全部空白でもここを使っています
+
+	public List<MediaBean> search1 (String title) throws Exception {
+			List<MediaBean> list = new ArrayList<MediaBean> ();
+			Connection con = getConnection();
+
+			//消されてない（med_delete=1)ことを確認しつつタイトルを検索
+			PreparedStatement st = con.prepareStatement("select * from media where med_title like ?");
+			//PreparedStatement st = con.prepareStatement("select * from  media where med_title like ?");
+
+		try {
+				st.setString(1, "%" + title + "%");
+				ResultSet rs = st.executeQuery ();
+				while (rs.next()) {
+					MediaBean mb = new MediaBean();
+					mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+					mb.setmedTitle(rs.getString("med_title")); //タイトル
+					mb.setmedImage(rs.getString("med_image")); //画像
+					mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+					mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+					mb.setmedRelease(rs.getString("med_release")); //発売日
+					mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+					mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+
+					//mb.setmedGenre1(rs.getInt("med_genre1")); //ジャンル１
+					//mb.setmedGenre2(rs.getInt("med_genre2")); //ジャンル２
+					list.add(mb);
+				}
+
+		}catch (Exception e) {
+			throw e;
+		}finally{
+			st.close();
+			con.close();
+		}
+			return list;
+	}
+
+
+		//ジャンルとタイトルで検索（ジャンルは完全一致）→ジャンル部分一致はsearch5
+	public List<MediaBean> search2 (String title, String genre1,String genre2) throws Exception{
+		List<MediaBean> list = new ArrayList<MediaBean> ();
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+	"SELECT * FROM media WHERE med_title like ? AND med_genre1 like ? AND med_genre2 like ?");
+
+		try {
+			st.setString(1, "%" + title +"%"); //タイトル部分一致
+			st.setString(2,genre1); //邦画洋画アニメ
+			st.setString(3,genre2); //ストーリージャンル
+			ResultSet rs = st.executeQuery();
+				while (rs.next()) {
+					MediaBean mb = new MediaBean();
+					mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+					mb.setmedTitle(rs.getString("med_title")); //タイトル
+					mb.setmedImage(rs.getString("med_image")); //画像
+					mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+					mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+					mb.setmedRelease(rs.getString("med_release")); //発売日
+
+					mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+					mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+					//mb.setmedGenre1(rs.getInt("med_genre1")); //ジャンル１
+					//mb.setmedGenre2(rs.getInt("med_genre2")); //ジャンル２
+
+					list.add(mb);
+				}
+			}catch (Exception e) {
+				throw e;
+			}finally {
+
+				st.close();
+				con.close();
+			}
+		return list;
+	}
+
+
+		//ジャンルのみ検索（完全一致）
+
+	public List<MediaBean> search3 (String genre1, String genre2) throws Exception {
+				List<MediaBean> list = new ArrayList<MediaBean> ();
+					Connection con = getConnection();
+					PreparedStatement st = con. prepareStatement(
+							//ジャンル一致を確認しているが…
+				//"SELECT * FROM media WHERE (med_genre1 = ? OR med_genre2 = ?)");
+				"SELECT * FROM media WHERE med_genre1 like ? AND med_genre2 like ? ");
+					try {
+						st.setString(1,genre1);
+						st.setString(2,genre2);
+						ResultSet rs = st.executeQuery ();
+							while (rs.next()) {
+								MediaBean mb = new MediaBean();
+								mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+								mb.setmedTitle(rs.getString("med_title")); //タイトル
+								mb.setmedImage(rs.getString("med_image")); //画像
+								mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+								mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+								mb.setmedRelease(rs.getString("med_release")); //発売日
+
+								mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+								mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+								//mb.setmedGenre1(rs.getInt("med_genre1")); //ジャンル１
+								//mb.setmedGenre2(rs.getInt("med_genre2")); //ジャンル２
+								list.add(mb);
+							}
+					}catch (Exception e) {
+
+						throw e;
+					}finally {
+						st.close();
+						con.close();
+					}
+
+					return list;
+		}
+	//ジャンルのみ検索（部分一致）
+
+	public List<MediaBean> search4 (String genre1, String genre2) throws Exception {
+				List<MediaBean> list = new ArrayList<MediaBean> ();
+					Connection con = getConnection();
+					PreparedStatement st = con. prepareStatement(
+							//ジャンル一致を確認しているが…
+				//"SELECT * FROM media WHERE (med_genre1 = ? OR med_genre2 = ?)");
+				"SELECT * FROM media WHERE (med_genre1 like ? OR med_genre2 like ?) ");
+					try {
+						st.setString(1,genre1);
+						st.setString(2,genre2);
+						ResultSet rs = st.executeQuery ();
+							while (rs.next()) {
+								MediaBean mb = new MediaBean();
+								mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+								mb.setmedTitle(rs.getString("med_title")); //タイトル
+								mb.setmedImage(rs.getString("med_image")); //画像
+								mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+								mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+								mb.setmedRelease(rs.getString("med_release")); //発売日
+
+								mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+								mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+								//mb.setmedGenre1(rs.getInt("med_genre1")); //ジャンル１
+								//mb.setmedGenre2(rs.getInt("med_genre2")); //ジャンル２
+								list.add(mb);
+							}
+					}catch (Exception e) {
+
+						throw e;
+					}finally {
+						st.close();
+						con.close();
+					}
+
+					return list;
+		}
+
+
+	//ジャンルとタイトルで検索（ジャンルは部分一致）
+public List<MediaBean> search5 (String title, String genre1,String genre2) throws Exception{
+	List<MediaBean> list = new ArrayList<MediaBean> ();
+	Connection con = getConnection();
+	PreparedStatement st = con.prepareStatement(
+    //削除機能にmeDelete使うときはこれ med_delete=1(1がある)をチェックした上で
+	//"SELECT * FROM media WHERE med_genre1 = ? AND med_genre2 = ? AND title LIKE ?)");
+"SELECT * FROM media WHERE med_title like ? AND (med_genre1 like ? OR med_genre2 like ?)");
+
+	try {
+		st.setString(1, "%" + title +"%"); //タイトル部分一致
+		st.setString(2,genre1); //邦画洋画アニメ
+		st.setString(3,genre2); //ストーリージャンル
+		ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				MediaBean mb = new MediaBean();
+				mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+				mb.setmedTitle(rs.getString("med_title")); //タイトル
+				mb.setmedImage(rs.getString("med_image")); //画像
+				mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+				mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+				mb.setmedRelease(rs.getString("med_release")); //発売日
+
+				mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+				mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+				//mb.setmedGenre1(rs.getInt("med_genre1")); //ジャンル１
+				//mb.setmedGenre2(rs.getInt("med_genre2")); //ジャンル２
+
+				list.add(mb);
+			}
+		}catch (Exception e) {
+			throw e;
+		}finally {
+
+			st.close();
+			con.close();
+		}
+	return list;
+}
+
+
+//TOPページ用検索（タイトルしか検索しない）
+public List<MediaBean> searchtop(String title) throws Exception {
+	List<MediaBean> list = new ArrayList<MediaBean> ();
+	Connection con = getConnection();
+
+	//消されてない（med_delete=1)ことを確認しつつタイトルを検索は削除
+	PreparedStatement st = con.prepareStatement("select * from media where med_title like ?");
+
+try {
+		st.setString(1, "%" + title + "%");
+		ResultSet rs = st.executeQuery ();
+		while (rs.next()) {
+			MediaBean mb = new MediaBean();
+			mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+			mb.setmedTitle(rs.getString("med_title")); //タイトル
+			mb.setmedImage(rs.getString("med_image")); //画像
+			mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+			mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+			mb.setmedRelease(rs.getString("med_release")); //発売日
+			mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+			mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+			list.add(mb);
+		}
+
+}catch (Exception e) {
+	throw e;
+}finally{
+	st.close();
+	con.close();
+}
+	return list;
+}
+
+
+
+
+//メディア個別ページへデータとばしたいやつ
+
+	public List<MediaBean> medpage (String title) throws Exception {
+			List<MediaBean> list = new ArrayList<MediaBean> ();
+			Connection con = getConnection();
+
+			//消されてない（med_delete=1)ことを確認しつつタイトルを検索
+			PreparedStatement st = con.prepareStatement("select * from media where med_code like ?");
+
+		try {
+				st.setString(1, "%" + title + "%");
+				ResultSet rs = st.executeQuery ();
+				while (rs.next()) {
+					MediaBean mb = new MediaBean();
+					mb.setmedCode(rs.getInt("med_code")); //メディアのコード
+					mb.setmedTitle(rs.getString("med_title")); //タイトル
+					mb.setmedImage(rs.getString("med_image")); //画像
+					mb.setmedMedia(rs.getString("med_media")); //CDとかDVDとか
+					mb.setmedInfo(rs.getString("med_info")); //メディアの説明文
+					mb.setmedRelease(rs.getString("med_release")); //発売日
+					mb.setmedGenre1(rs.getString("med_genre1")); //ジャンル１
+					mb.setmedGenre2(rs.getString("med_genre2")); //ジャンル２
+					mb.setmedDate(rs.getString("med_date")); //このサイトへの登録日
+					list.add(mb);
+				}
+
+		}catch (Exception e) {
+			throw e;
+		}finally{
+			st.close();
+			con.close();
+		}
+			return list;
+	}
+
+
+//メディア新規登録 inoue
+	public int register(MediaBean mb) throws Exception {
+			Connection con = getConnection();
+			PreparedStatement st = con.prepareStatement(
+					"insert into media values(null,?,?,?,?,?,?,?,1,now())");
+
+		try {
+			//st.setString(0, mb.getmedCode());
+			st.setString(1, mb.getmedTitle());  //タイトル
+			st.setString(2, mb.getmedImage()); //画像　※実装方法模索中
+			st.setString(3, mb.getmedMedia());  //作品媒体
+			st.setString(4, mb.getmedInfo());   //作品内容
+			st.setString(5, mb.getmedRelease()); //リリース年
+			st.setString(6, mb.getmedGenre1()); //ジャンル１（表現方法）
+			st.setString(7, mb.getmedGenre2()); //ジャンル２（話）
+			//st.setString(0, mb.getmedDelete()); //
+			//st.setString(0, mb.getmedDate()); //
+
+
+			int line = st.executeUpdate();
+
+			return line;
+
+		}
+		catch (Exception e) {
+			int i = 0;
+			return i;
+		}finally {
+			st.close();
+			con.close();
+		}
+	}
+
+
+////メディア消去
+//			public int delete(MediaBean mb3) throws Exception {
+//
+//				int line = 0;
+//
+//				Connection con = getConnection();
+//				PreparedStatement st = con.prepareStatement(
+//						 "UPDATE media SET med_delete =1 WHERE meCode=?"); //meDeleteに１入れてる（完全消去しないで運用）
+//						//"DELETE FROM media WHERE med_code=?"); //データベースからメディアコードが合致した行を削除しちゃう
+//				try {
+//					st.setInt(1, mb3.getmedCode());
+//					line = st.executeUpdate();
+//				}catch (Exception e) {
+//					e.printStackTrace();
+//				}finally {
+//					st.close();
+//					con.close();
+//				}
+//				return line;
+//			}
+
+
+//作品情報編集
+           public int edit(MediaBean mb) throws Exception{
+
+        	   int line;
+        	   Connection con = getConnection();
+        	   PreparedStatement st = con.prepareStatement(
+        			   "update media set med_title = ?,med_info = ?,med_release = ?,"
+        			   + "med_genre1 = ?,med_genre2 = ? where med_code = ?");
+
+        	    st.setString(1, mb.getmedTitle());//タイトル
+//				st.setbyte(2, mb.getmedImage());//画像
+				st.setString(2, mb.getmedInfo());  //あらすじ
+				st.setString(3, mb.getmedRelease());  //発売日
+				st.setString(4, mb.getmedGenre1());  //ジャンル１（表現方法）
+				st.setString(5, mb.getmedGenre2());  //ジャンル２（話）
+
+     try {
+    	 line = st.executeUpdate();
+     }catch(Exception e) {
+    	 throw e;
+     }finally {
+    	 st.close();
+    	 con.close();
+     }
+     return line;
+     }
+
+//作品削除
+             public int delete(MediaBean mb1) throws Exception{
+
+
+            	 Connection con = getConnection();
+          	     PreparedStatement st = con.prepareStatement(
+          	    		 "delete from media where med_code = ?");
+
+         		try {
+        			st.setInt(1,mb1.getmedCode());
+
+        			int line = st.executeUpdate();
+
+        			return line;
+
+        		} catch(Exception e) {
+        			int i = 0;
+        			return i;
+        		} finally {
+        			st.close();
+        			con.close();
+        		}
+        	}
+
+
+             }

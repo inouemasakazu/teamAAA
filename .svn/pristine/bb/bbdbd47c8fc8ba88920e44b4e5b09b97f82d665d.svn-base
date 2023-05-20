@@ -1,0 +1,160 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.ReviewBean;
+
+public class ReviewDAO extends DAO{
+
+	//レビューの検索機能
+	public List<ReviewBean> reviewSearch(String reviewContent
+			) throws Exception{
+		List<ReviewBean> list = new ArrayList<ReviewBean>();
+
+		Connection con = getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select * from (media M inner join("
+				+ "review R inner join userCode U on R.userCode = U.userCode)"
+				+"on M.medCode = R.medCode)"+"where reviewContent like ?");
+
+		st.setNString(1,"%"+reviewContent+"%");
+
+		try {
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				ReviewBean rb = new ReviewBean();
+				rb.setreviewCode(rs.getString("reviewCode"));
+				rb.setmedCode(rs.getString("medCode"));
+				rb.setuserCode(rs.getString("userCode"));
+				rb.setreviewContent(rs.getString("reviewContent"));
+				rb.setreviewDate(rs.getString("reviewDate"));
+				list.add(rb);
+			}
+			st.close();
+			con.close();
+
+			return list;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+
+	}
+
+  //レビュー登録
+	public  int reviewRegister(ReviewBean rb)throws Exception{
+		Connection con = getConnection();
+
+	    PreparedStatement st=con.prepareStatement(
+				"insert into review values(null,?,?,?,?)");
+		try {
+	  //st.setString(1,rb.getreviewCode()) = null;
+		st.setString(1,rb.getmedCode());
+		st.setString(2,rb.getuserCode());
+		st.setString(3,rb.getreviewContent());
+		st.setString(4,rb.getreviewDate());
+		int line = st.executeUpdate();
+
+		return line;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+
+	}
+
+	//レビュー削除
+	public  int reviewDelete(ReviewBean rb2)throws Exception{
+		Connection con = getConnection();
+		con.setAutoCommit(false);
+	    PreparedStatement st=con.prepareStatement(
+				"delete from review where reviewCode = ?");
+		try {
+		st.setString(1,rb2.getreviewCode());
+		int line = st.executeUpdate();
+		return line;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+}
+
+	//表示した個別作品ページにレビューを表示するメソッド
+	public List<ReviewBean> reviewDetail(String medCode2
+			) throws Exception{
+		List<ReviewBean> list = new ArrayList<>();
+
+		Connection con = getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select * from review where medCode = ?");
+
+		st.setNString(1,"%"+medCode2+"%");
+
+		try {
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				ReviewBean rb = new ReviewBean();
+				rb.setreviewCode(rs.getString("reviewCode"));
+				rb.setmedCode(rs.getString("medCode"));
+				rb.setuserCode(rs.getString("userCode"));
+				rb.setreviewContent(rs.getString("reviewContent"));
+				rb.setreviewDate(rs.getString("reviewDate"));
+				list.add(rb);
+			}
+
+			return list;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+}
+
+	//ユーザーマイページからレビュー一覧を表示するメソッド
+	public List<ReviewBean> userAllReview(String userCode
+			) throws Exception{
+		List<ReviewBean> list = new ArrayList<>();
+		Connection con = getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select M.*,R.* from media as M inner join review  as R on M.medCode = R.medCode"
+				+ "where userCode = ?");
+
+		st.setString(1, userCode);
+
+		try {
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+			ReviewBean rb = new ReviewBean();
+			rb.setreviewCode(rs.getString("reviewCode"));
+			rb.setmedCode(rs.getString("medCode"));
+			rb.setuserCode(rs.getString("userCode"));
+			rb.setreviewContent(rs.getString("reviewContent"));
+			rb.setreviewDate(rs.getString("reviewDate"));
+			list.add(rb);
+
+			}
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+		return list;
+
+}
+}

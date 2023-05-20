@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/* ユーザー関連のCSS */
+/* 共通 */
+.admin {
+	max-width: 1200px;
+	margin-top: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 40px 150px;
+	color: #202020;
+}
+
+.admin h1 {
+  color: #202020;
+  padding: 0.5em 0;
+  border-top: solid 3px #202020;
+  border-bottom: solid 3px #202020;
+}
+
+/* ユーザーログインボタン ボタンは共通にします*/
+.admin-input {
+	margin-top: 50px;
+	background-color: #ff2d2d;
+	color: #ffffff;
+    display: inline-block;
+    min-width: 180px;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+.admin-input:hover {
+    background-color: #ff4747;
+}
+
+/* ユーザーメニュー */
+.admin-flex {
+	margin-top: 50px;
+	display: flex;
+	align-items: flex-start;
+}
+
+.admin-main {
+	background-color: #d1d1d1;
+	border-radius: 15px;
+	width: 50%;
+    margin-right: 35px;
+    padding: 20px 40px;
+}
+
+.admin-main dl {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.admin-main dl dt{
+    width: 30%;
+}
+
+.admin-main dl dd {
+    width: 70%;
+    font-weight: bold;
+}
+
+.admin-edit {
+	background-color: #d1d1d1;
+	border-radius: 15px;
+	width: 50%;
+    padding: 20px 40px;
+}
+
+.admin-edit dl {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.admin-edit dl dt{
+    width: 40%;
+}
+
+.admin-edit dl dd {
+    width: 60%;
+    font-weight: bold;
+}
+
+.admin-del {
+	margin-top: 50px;
+	text-align: center;
+}
+
+/* ユーザーログイン関連 */
+.login-form {
+	background-color: #d1d1d1;
+	align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 400px;
+    padding: 0 40px 50px;
+    text-align: center;
+}
+
+.login-form h2 {
+	margin-top: 50px;
+	font-size: 18px;
+}
+
+.login-form p {
+	margin-top: 30px;
+	font-size: 14px;
+}
+
+.login-form-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.login-input {
+	margin-right: 20px;
+}
+
+.new-input {
+	margin-left: 20px;
+}
+
+/* ユーザー情報変更 */
+.admin-main-2 dl {
+	max-width: 80%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.admin-main-2 dl dt{
+    width: 30%;
+}
+
+.admin-main-2 dl dd {
+    width: 70%;
+    font-weight: bold;
+}

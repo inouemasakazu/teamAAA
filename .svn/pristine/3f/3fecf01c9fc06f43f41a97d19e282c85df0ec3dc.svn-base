@@ -1,0 +1,226 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.ReviewBean;
+
+public class ReviewDAO extends DAO{
+
+	//レビューの検索機能
+	public List<ReviewBean> reviewSearch(String reviewContent
+			) throws Exception{
+		List<ReviewBean> list = new ArrayList<ReviewBean>();
+
+		Connection con = getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select * from (media M inner join("
+				+ "review R inner join use_code U on R.user_code = U.user_code)"
+				+"on M.med_code = R.med_code)"+"where review_content like ?");
+
+		st.setNString(1,"%"+reviewContent+"%");
+
+		try {
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				ReviewBean rb = new ReviewBean();
+				rb.setreviewCode(rs.getInt("review_code"));
+				rb.setmedCode(rs.getInt("med_code"));
+				rb.setuserCode(rs.getInt("user_code"));
+				rb.setreviewContent(rs.getString("review_content"));
+				rb.setreviewDate(rs.getString("review_date"));
+				rb.setuserName(rs.getString("user_name"));
+				list.add(rb);
+			}
+			st.close();
+			con.close();
+
+			return list;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+
+	}
+
+ //レビュー登録 inoue5/11
+	public int register(ReviewBean rb) throws Exception {
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"insert into review values(null,?,?,?,?,now(),?)");
+
+		try {
+			//st.setString(0,rb.getreviewCode()) = null;
+			//st.setInt(0,rb.getmedCode());
+			//st.setInt(0,rb.getuserCode());
+			st.setString(1,rb.getreviewContent());
+			st.setString(2,rb.getuserName());
+			int line = st.executeUpdate();
+
+			return line;
+
+		}
+		catch (Exception e) {
+			int i = 0;
+			return i;
+		}finally {
+			st.close();
+			con.close();
+		}
+	}
+
+	//レビュー削除
+	public  int reviewDelete(ReviewBean rb2)throws Exception{
+		Connection con = getConnection();
+		con.setAutoCommit(false);
+	    PreparedStatement st=con.prepareStatement(
+				"delete from review where review_code = ?");
+		try {
+		st.setInt(1,rb2.getreviewCode());
+		int line = st.executeUpdate();
+		return line;
+		}catch(Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+}
+
+	//表示した個別作品ページにレビューを表示するメソッド
+
+		public List<ReviewBean> medpageReview (String medCode) throws Exception {
+				List<ReviewBean> list = new ArrayList<ReviewBean> ();
+				Connection con = getConnection();
+
+				//消されてない（review_delete=1)ことを確認しつつタイトルを検索
+				PreparedStatement st = con.prepareStatement("select * from review where review_delete = 1 AND med_code like ?");
+
+			try {
+					st.setString(1,medCode);
+					ResultSet rs = st.executeQuery ();
+					while (rs.next()) {
+						ReviewBean mb = new ReviewBean();
+						mb.setreviewCode(rs.getInt("review_code")); //レビューコード
+						mb.setmedCode(rs.getInt("med_code")); //メディアコード
+						mb.setuserCode(rs.getInt("user_code")); //ユーザーコード
+						mb.setreviewContent(rs.getString("review_content")); //レビュー内容
+						mb.setreviewDate(rs.getString("review_date")); //このサイトへの登録日
+						mb.setuserName(rs.getString("user_name"));
+						list.add(mb);
+					}
+
+			}catch (Exception e) {
+				throw e;
+			}finally{
+				st.close();
+				con.close();
+			}
+				return list;
+		}
+
+		//レビュー一覧表示するよ kuma
+//管理者レビュー一覧
+		public List<ReviewBean> reviewlist (String rlist) throws Exception {
+				List<ReviewBean> list = new ArrayList<ReviewBean> ();
+				Connection con = getConnection();
+
+				//消されてない（med_delete=1)はやってない
+				PreparedStatement st = con.prepareStatement("select * from review where review_Code like ?");
+
+			try {
+					st.setString(1, "%" + rlist + "%");
+					ResultSet rs = st.executeQuery ();
+					while (rs.next()) {
+						ReviewBean mb = new ReviewBean();
+						mb.setreviewCode(rs.getInt("review_code")); //ユーザーコード 自動付与
+						mb.setmedCode(rs.getInt("med_code")); //ユーザーID　任意
+						mb.setuserCode(rs.getInt("user_code")); //ユーザーパスワード　任意
+						mb.setreviewContent(rs.getString("review_content")); //ニックネーム　任意
+						mb.setreviewDate(rs.getString("review_date")); //登録日時
+						mb.setuserName(rs.getString("user_name"));
+						list.add(mb);
+					}
+
+			}catch (Exception e) {
+				throw e;
+			}finally{
+				st.close();
+				con.close();
+			}
+				return list;
+		}
+
+
+		public List<ReviewBean> reviewlist2 (String rlist) throws Exception {
+			List<ReviewBean> list = new ArrayList<ReviewBean> ();
+			Connection con = getConnection();
+
+			//消されてない（med_delete=1)はやってない
+			PreparedStatement st = con.prepareStatement("select * from review where user_Code = ?");
+
+		try {
+				st.setString(1, "%" + rlist + "%");
+				ResultSet rs = st.executeQuery ();
+				while (rs.next()) {
+					ReviewBean mb = new ReviewBean();
+					mb.setreviewCode(rs.getInt("review_code")); //ユーザーコード 自動付与
+					mb.setmedCode(rs.getInt("med_code")); //ユーザーID　任意
+					mb.setuserCode(rs.getInt("user_code")); //ユーザーパスワード　任意
+					mb.setreviewContent(rs.getString("review_content")); //ニックネーム　任意
+					mb.setreviewDate(rs.getString("review_date")); //登録日時
+					mb.setuserName(rs.getString("user_name"));
+					list.add(mb);
+				}
+
+		}catch (Exception e) {
+			throw e;
+		}finally{
+			st.close();
+			con.close();
+		}
+			return list;
+	}
+}
+
+//	//ユーザーマイページからレビュー一覧を表示するメソッド
+//	public List<ReviewBean> userAllReview(String userCode
+//			) throws Exception{
+//		List<ReviewBean> list = new ArrayList<>();
+//		Connection con = getConnection();
+//
+//		PreparedStatement st = con.prepareStatement(
+//				"select M.*,R.* from media as M inner join review  as R on M.med_code = R.med_code"
+//				+ "where user_code = ?");
+//
+//		st.setString(1, userCode);
+//
+//		try {
+//			ResultSet rs = st.executeQuery();
+//
+//			while(rs.next()) {
+//			ReviewBean rb = new ReviewBean();
+//			rb.setreviewCode(rs.getInt("review_code"));
+//			rb.setmedCode(rs.getInt("med_code"));
+//			rb.setuserCode(rs.getInt("user_code"));
+//			rb.setreviewContent(rs.getString("review_content"));
+//			rb.setreviewDate(rs.getString("review_date"));
+//			list.add(rb);
+//
+//			}
+//		}catch(Exception e) {
+//			throw e;
+//		}finally {
+//			st.close();
+//			con.close();
+//		}
+//		return list;
+//
+//}
+//}

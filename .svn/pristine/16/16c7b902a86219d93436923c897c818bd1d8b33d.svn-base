@@ -1,0 +1,215 @@
+@charset "utf-8";
+
+/* 全範囲の数値初期化 */
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    /*font-family: 'IBM Plex Sans JP', sans-serif;*/
+    font-size: 16px;
+    color: #000000;
+    line-height: 1;
+    background-color: #ffffff;
+}
+
+p,a,h1,h2,h3,h4,h5,h6 {
+	font-family: 'IBM Plex Sans JP', sans-serif;
+}
+
+button,
+input {
+	border: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* header内の設定 */
+header {
+	background-color: #000000;
+}
+
+.header-inner {
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+}
+
+.header-logo {
+	margin-left: 40px;
+}
+
+.menu {
+	margin: 0 0 0 auto;
+	display: flex;
+	height: 130px;
+    font-size: 14px;
+}
+
+/* ログイン・ログアウト共通のスタイルです。 */
+.login-area {
+	background-color: #ff2d2d;
+	color: #000000;
+	font-weight: bold;
+    display: inline-block;
+    height: 130px;
+    width: 130px;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.login-area:hover {
+    background-color: #ff4747;
+}
+
+.menu p {
+	margin-top: auto;;
+	margin-bottom: 30px;
+	margin-right: 20px;
+	font-size: 18px;
+}
+
+/* ログイン後の丸スタイルです。 */
+.login-menu {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 28px;
+	height: 85px;
+    width: 85px;
+    border-radius: 50%;
+	background-color: #7fffff;
+    display: inline-block;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	align-items: center;
+}
+
+.login-menu:hover {
+    background-color: #adffff;
+}
+
+.menu-text:hover {
+  text-decoration: underline;
+  margin-top: 5px;
+}
+
+/* footer内の設定 */
+footer {
+    color: #ffffff;
+    background-color: #000000;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    display: block;
+    width: 235px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+footer .login-area {
+    margin-top: 28px;
+}
+
+.copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 90px;
+}
+
+/* 管理者ログインのリンクだが記述がfooter内なのでここに記述します。 */
+.admin-in {
+	width: 180px;
+	height: 30px;
+	margin: 0 20px 20px auto;
+	background-color: #dfdfdf;
+	color:#202020;
+	border-radius: 5px;
+}
+
+.admin-in a {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+/* ボタン全般5/14現在共通 */
+.link-button {
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 25px;
+    color: #FFF;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    background-color: #ff2d2d;
+}
+.link-button:hover {
+    background-color: #ff4747;
+}
+
+/* イン（あお）とアウトボタン（あか） */
+.in-btn {
+	margin-top: 50px;
+	background-color: #0075c2;
+	color: #ffffff;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+    width: 180px;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+.in-btn:hover {
+    background-color: #7fbfff;
+}
+
+.out-btn {
+	margin-top: 50px;
+	background-color: #ff2d2d;
+	color: #ffffff;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+    width: 180px;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+.out-btn:hover {
+    background-color: #ff4747;
+}

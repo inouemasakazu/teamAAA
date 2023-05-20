@@ -1,0 +1,9 @@
+package action;
+
+
+
+//管理者ログイン確認処理
+
+public class AdminLoginCheckAction {
+
+}

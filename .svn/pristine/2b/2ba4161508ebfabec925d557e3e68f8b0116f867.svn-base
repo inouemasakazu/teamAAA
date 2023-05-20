@@ -1,0 +1,9 @@
+package action;
+
+
+//管理者一覧表示処理
+
+
+public class AdminAllAction {
+
+}

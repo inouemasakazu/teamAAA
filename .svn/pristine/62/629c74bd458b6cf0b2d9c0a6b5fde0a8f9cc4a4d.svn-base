@@ -1,0 +1,10 @@
+package action;
+
+
+
+//全レビュー表示処理
+
+
+public class AdminReviewAllAction {
+
+}

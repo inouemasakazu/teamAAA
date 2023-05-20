@@ -1,0 +1,29 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@page import="bean.AdminBean" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% AdminBean admin =(AdminBean)session.getAttribute("adminCode"); %>
+
+<%@include file="../html/header.html" %>
+<%@include file="../menu/header.jsp" %>
+
+<main class="admin">
+	<h1>管理者退会</h1>
+	<div class="login-form">
+		<h2>管理者</h2>
+		<p>管理者退会しますか？</p>
+	    <!-- 退会者の adminCode を次のactionに飛ばします。 -->
+		<form action="../admin/AdminQuit.action" method="post">
+		<input type ="hidden" name="adminCode"value="${admin.adminCode}">
+			<p>${admin.adminName}さん</p>
+			<input type="submit" value="退会" class="out-btn">
+		</form>
+	    <a href="admin-menu.jsp" class="in-btn">管理者メニューに戻る</a>
+	</div>
+</main>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,31 @@
+package list;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.ReviewBean;
+import dao.ReviewDAO;
+import tool.Action;
+
+public class ReviewListAction extends Action {
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String reviewCode = request.getParameter("reviewCode");
+
+		ReviewDAO dao = new ReviewDAO();
+
+		if((reviewCode.equals(""))) {
+			List<ReviewBean>list = dao.reviewlist(reviewCode);
+			request.setAttribute("rlist",list);
+
+			return "../commonlist/reviewlist.jsp";
+		}
+
+				//戻りJSPのページいれて～
+				return"../common/index.jsp";
+	}
+}

@@ -1,0 +1,25 @@
+<%@page language="java" contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<div class="main">
+	<h1>管理者登録ページ</h1>
+	<div class="login-form">
+		<p>登録する内容を入力してください。</p>
+		<form action="../admin/AdminCheck.action" method="post">
+			半角英数字で6から15文字以内<br>
+	        ログインID:<input type="text" name="adminId"><br>
+	        半角英数字で4から10文字以内<br>
+	        パスワード:<input type="password" name="adminPass"><br>
+	        名前:<input type="text" name="adminName"><br>
+	        <input type="submit" value="登録">
+	    </form>
+    </div>
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

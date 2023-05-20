@@ -1,0 +1,30 @@
+package action;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.MediaBean;
+import dao.MediaDAO;
+import tool.Action;
+
+public class MedPageAction extends Action {
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String medTitle = request.getParameter("medTitle");
+
+		MediaDAO dao = new MediaDAO();
+
+		if(!(medTitle.equals(""))) {
+			List<MediaBean>list = dao.medpage(medTitle);
+			request.setAttribute("list",list);
+			return "../media/mediapage.jsp";
+		}
+
+
+				return"../search/search-result.jsp";
+	}
+}

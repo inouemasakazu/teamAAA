@@ -1,0 +1,163 @@
+package DAO;
+
+import java.sql.Connection;
+
+
+public class adminDAO extends DAO{
+	//ユーザーログイン
+	public adminbean login(String login, String password) throws Exception {
+		adminbean usaccount = null;
+		Connection con = getConnection();
+		PrerpsredStatement st = con.prepareStatement(
+				"select * from usaccount where usID=? and usID=? and usPass=?");
+			st.setString(1,login);
+		    st.setString(2, password);
+
+		    try {
+		    ResultSet rs=st.executeQuery();
+		    while (rs.next()) {
+		    	usaccount = new adminAccountBean();
+		    	usaccount.setUsAccount(rs.getInt("usAccount"));
+		    	usaccount.setUsID(rs.getNString("usID"));
+		    	usaccount.setUsPass(rs.getNString("usPass"));
+		    	usaccount.setUsNickname(rs.getNString("usNickname"));
+		    	usaccount.setUsDelete(rs.getInt("usdelete"));
+		    	usaccount.setUsCreatedate(rs.getString("usCreateDate"));
+			 }
+			 return usaccount;
+
+		    }catch (Exception e) {
+		    	throw e;
+		    }finally {
+		    	st.close();
+		    	con.close();
+		    }
+	}
+
+	//ユーザーニックネーム検索
+	public List<adminbean>searchUsNickname(String usNickname)throws
+		Exception{
+		List<adminbean> list = new ArrayList<adminBean>();
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"select * from admin us where usDeleate = 0 and usNickname like ?");
+		st.setNString(1,"%"+usNickname + "%");
+		try {
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				adminBean uab = new adminBean();
+				uab.setUsAccount(rs.getInt("usAccount"));
+				uab.setUsID(rs.getNString("usID"));
+				uab.setUsPass(rs.getNString("usPass"));
+				uab.setUsNickname(rs.getNString("usNickname"));
+				uab.setUsCreatedate(rs.getString("usCreateDate"));
+		    	list.add(uab);
+			}
+			return list;
+
+		}catch (Exception e) {
+			throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+	}
+
+	//ユーザーアカウントコード検索
+	public int add(adminBean) searchUsAccount(String usAccount) throws
+Exception{
+		List<admin Bean> list = new ArrayList<adminAccountBean>();
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"select * from usAccount where usDelete = 0 and usAccount =?");
+		st.setNString(1, usAccount);
+		try {
+			ResultSet rs  = st.executeQuery();
+			while(rs.next()) {
+				adminBean uab = new adminBean();
+		    	uab.setUsAccount(rs.getInt("usAccount"));
+		    	uab.setUsID(rs.getNString("usID"));
+		    	uab.setUsPass(rs.getNString("usPass"));
+		    	uab.setUsNickname(rs.getNString("usNickname"));
+		    	uab.setUsCreatedate(rs.getString("usCreateDate"));
+		    	list.add(uab);
+			}
+			return list;
+
+		}catch (Exception e) {
+			throw e;
+		} finally {
+			st.close();
+			con.close();
+
+		}
+
+	//ユーザー新規登録
+	public int register(adminBean uab2) throws Exception
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"insert into usAccount values(null,?,?,?,0,?)");
+		try {
+			st.setNString(1,uab2.getUsID());
+			st.setNString(2, uab2.getUsPass());
+			st.setNString(3,uab2.getUsNickname());
+			st.setNString(4,uab2.getUsCreatedate());
+			int line = st.executeUpdate();
+
+			return line;
+
+		}catch(Exception e) {
+			int i = 0;
+			returm i;
+			//throw e;
+		}finally {
+			st.close();
+			con.close();
+		}
+		}
+
+//ユーザー削除
+	public int delete(adminAccountBean uab3)throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"update usAccount set usDelete = 1where usAccount = ? andusNickname = ?;");
+		try {
+			st.setInt(1,uab4.getUsAccount());
+			st.setNString(2,uab3.getUsNickname());
+			int line = st.executeUpdate();
+
+			returm line;
+
+			}catch (Exception e) {
+				throw e;
+			}finally {
+				st.close();
+				con.close();
+			}
+	}
+
+	//ユーザーアカウントの変更
+	public int update(adminBean uab4) throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+		"update usAccount set usID=?,usPass =?,usNickname =? whereusAccount = ?;");
+
+		try {
+			st.setNString(1,uab4 getUsID());
+			st.setNString(2,uab4 getUsPass());
+			st.setNString(3,uab4 getUsNickname());
+			st.setInt(4,uab4.getUsAccount());
+			int line = st.executeUpdate();
+
+			return line;
+
+			)catch(Exception e) {
+				int i =0;
+				return i;
+				//throw e;
+			}finally {
+				st.close();
+				con.close();
+
+			}
+			}

@@ -1,0 +1,22 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="common">
+<%@include file="../menu/header.jsp" %>
+
+
+<div class="main">
+	<h1>管理者メニュー</h1>
+
+	<ul>
+		<li><a href="#.jsp">投稿レビュー一覧</a></li>
+		<li><a href="#.jsp">ユーザー情報変更</a></li>
+		<li><a href="admin-register-in.jsp">管理者追加登録</a></li>
+		<li><a href="#.jsp">ユーザー退会</a></li>
+	</ul>
+
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

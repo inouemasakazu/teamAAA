@@ -1,0 +1,26 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<main class="">
+	<h1>レビューリスト</h1>
+<br>
+<br>
+
+	<c:forEach var="p" items="${rlist}">
+<div class="media-row">
+	レビューコード　■　${p.reviewCode} <BR>
+	メディアコード　■　${p.medCode}  <BR>
+	ユーザーコード　■　${p.userCode} <BR>
+	レビュー内容　■　${p.reviewContent} <BR>
+	登録日　■　${p.reviewDate}  <BR>
+</div>
+	</c:forEach>
+
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
+

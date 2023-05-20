@@ -1,0 +1,21 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<footer>
+	<div class="footer-logo">
+		<a href="../common/index.jsp"><img alt="タイトル画像" src="../img/logo.jpg"></a>
+	</div>
+	<nav class="site-menu">
+		<ul>
+			<li><a href="#.html">メニュー</a></li>
+			<li><a href="#.html">プライバシーポリシー</a></li>
+			<li><a href="#.html">特定商取引法に関する表示</a></li>
+			<li><a href="#.html">利用規約</a></li>
+		</ul>
+	</nav>
+	<div class="login-area">
+		<a href="../admin/admin-login-in.jsp">管理者専用ログイン</a>
+	</div>
+	<div class="copyright">
+		<p>Copyright 2023 ポリテクセンター</p>
+	</div>
+</footer>

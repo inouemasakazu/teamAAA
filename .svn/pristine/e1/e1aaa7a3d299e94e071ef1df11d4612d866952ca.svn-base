@@ -1,0 +1,33 @@
+package action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.UserBean;
+import dao.UserDAO;
+import tool.Action;
+
+
+//ユーザー削除処理
+
+
+
+public class UserDeleteAction extends Action{
+	public String execute(
+			HttpServletRequest request,HttpServletResponse response)throws Exception{
+
+
+		String userId = request.getParameter("userId");
+		String userName = request.getParameter("userName");
+		UserBean uab = new UserBean();
+
+		uab.setuserId(userId);
+		uab.setuserName(userName);
+		UserDAO dao = new UserDAO();
+		dao.delete(uab);
+
+
+		return "AdUsDelete-Complete.jsp";
+	}
+
+}

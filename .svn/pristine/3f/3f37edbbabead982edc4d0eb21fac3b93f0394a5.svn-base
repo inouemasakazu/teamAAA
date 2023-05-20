@@ -1,0 +1,43 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<%@include file="../menu/header.jsp" %>
+
+
+<main class="user">
+	<h1>ユーザーメニュー</h1>
+	<div class="user-flex">
+		<div class="user-main">
+			<h2>こんにちは、${user.userName}さん</h2>
+			<dl>
+				<dd>アカウント番号</dd>
+				<dt>${user.userCode}</dt>
+				<dd>アカウントID</dd>
+				<dt>${user.userId}</dt>
+				<dd>アカウントパスワード</dd>
+				<dt>${user.userPass}</dt>
+			</dl>
+		</div>
+
+		<div class="user-edit">
+			<h2>会員情報管理</h2>
+			<dl>
+				<dd>ユーザー情報</dd>
+				<dt><a href="user-edit-in.jsp">変更する</a></dt>
+				<form action="../list/UserReviewList.action" method="post">
+	        <button type="submit" name="userCode" value="">レビューリスト</button>
+	    </form>
+			</dl>
+		</div>
+	</div>
+
+	<div class="user-del">
+		<a class="user-input" href="user-del-in.jsp">ユーザー退会</a>
+	</div>
+
+
+</main>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

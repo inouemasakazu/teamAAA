@@ -1,0 +1,15 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<div class="login-form">
+		<p>削除しました</p>
+		<a href="../common/index.jsp">トップページに移動する</a>
+	</div>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

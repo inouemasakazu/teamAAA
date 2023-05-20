@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@include file="../menu/header.jsp" %>
+<%@include file="../html/header.html" %>
+
+<main class="main">
+	<c:forEach var="p" items="${list}">
+	<h1>${p.medTitle}</h1>
+		<div class="media-in-flex">
+			<div class="media-in-img">
+				<!-- <img src="../img/aronman.jpg" alt="作品画像"> -->
+				<img src="/teamAAA/upload/${p.medImage }" alt="作品画像">
+			</div>
+			<div class="media-in-text">
+				<dl>
+					<dt>CATEGORY</dt>
+					<dd>${p.medGenre1}<br>${p.medGenre2}</dd>
+					<dt class="dt-margin-top">発売日</dt>
+					<dd>${p.medRelease}</dd>
+					<dt class="dt-margin-top">映像媒体</dt>
+					<dd>${p.medMedia}</dd>
+					<dt class="dt-margin-top"></dt>
+					<dd></dd>
+					<dt class="dt-margin-top">登録日</dt>
+					<dd>${p.medDate}</dd>
+					<dt class="dt-margin-top">メディアコード</dt>
+					<dd>${p.medCode}</dd>
+				</dl>
+				<div class="media-info-wrap">
+					<h2 class="media-info">ABOUT</h2>
+					<p class="media-info-p">${p.medInfo}</p>
+				</div>
+			</div>
+		</div>
+
+	<!-- ここからレビュー 井上 -->
+	<!-- レビュー投稿 条件分岐でログインアカウントとゲストの表示が変わります。 -->
+	<div class="review-area-flex">
+		<div class="review-post">
+			<c:if test="${!(!empty user || !empty admin)}">
+				<p>ログインするとレビューが投稿できます。</p>
+				<a href="../user/user-login-in.jsp" class="review-post-btn">ログイン/新規登録</a>
+			</c:if>
+			<c:if test="${!empty user.userName && empty admin.adminName}">
+				<form action="../review/ReviewPostIn.action"  method="post">
+						<input type ="hidden" name="medCode" value="${p.medCode}">
+						<input type="submit" value="レビュ-を書く" class="review-post-btn">
+					</form>
+			</c:if>
+		</div>
+		<div class="review-list-area">
+			<h3>みんなのレビュー</h3>
+			<c:forEach var="p" items="${relist}">
+				<div class="review-list">
+					<h4>${p.userName} さん</h4>
+					<small>${p.reviewDate}に日本でレビュー済み</small>
+					<p>${p.reviewContent}</p>
+					<c:if test="${user.userName == p.userName}">
+					<form action="../review/ReviewDeleteCheck.action"  method="post">
+						<input type ="hidden" name="reviewCode" value="${p.reviewCode}">
+						<input type ="hidden" name="userName" value="${p.userName}">
+						<input type ="hidden" name="reviewContent" value="${p.reviewContent}">
+						<input type="submit" value="削除" class="review-del-btn">
+					</form>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	</c:forEach>
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

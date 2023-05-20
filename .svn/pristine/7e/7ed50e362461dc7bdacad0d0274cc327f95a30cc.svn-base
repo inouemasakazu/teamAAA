@@ -1,0 +1,22 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<div class="main">
+	<h1>ユーザー退会ページ</h1>
+	<div class="login-form">
+
+	    <p>ユーザー退会しますか？</p>
+		<a href="../user/UserQuit.action">退会</a>
+
+		<p>退会しない</p>
+	    <a href="user-menu.jsp">ユーザーメニューに戻る</a>
+	</div>
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

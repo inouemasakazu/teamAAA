@@ -1,0 +1,68 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+
+<p>■映像メディア情報検索■</p>
+
+
+
+<!--タイトル検索の入力box  -->
+
+タイトル検索（部分一致)　<input type="text" name="title">
+
+
+
+<!-- メディア選択ボタン二つ -->
+<!-- name="check"設定してないよ -->
+
+	<label class="ECM_CheckboxInput">
+	<input class="ECM_CheckboxInput-Input" type="checkbox" value="BD">
+	<span class="ECM_CheckboxInput-DummyInput"></span>
+	<span class="ECM_CheckboxInput-LabelText">BD</span></label>
+
+	<label class="ECM_CheckboxInput">
+	<input class="ECM_CheckboxInput-Input" type="checkbox" value="DVD">
+	<span class="ECM_CheckboxInput-DummyInput"></span>
+	<span class="ECM_CheckboxInput-LabelText">DVD</span></label>
+
+
+
+<!-- ジャンル入力プルダウンメニューその１ -->
+<select name="genre1">
+	<option value="">表現</option>
+	<option value="洋画">洋画（実写）</option>
+	<option value="邦画">邦画（実写）</option>
+	<option value="アニメ">アニメーション</option>
+	<option value="その他">その他</option>
+</select>
+
+<br>
+
+<!-- ジャンル入力プルダウンメニューその２ -->
+<select name="genre2">
+	<option value="">ジャンル</option>
+	<option value="アクション">アクション</option>
+	<option value="ホラー">ホラー</option>
+	<option value="SF">SF</option>
+	<option value="コメディ">コメディ</option>
+	<option value="ラブロマンス">ラブロマンス</option>
+	<option value="ファンタジー">ファンタジー</option>
+	<option value="ドキュメンタリー">ドキュメンタリー</option>
+	<option value="バイオレンス">バイオレンス</option>
+	<option value="子供向け">子供向け</option>
+	<option value="その他">その他</option>
+</select>
+<br>
+
+<input type="submit" value="送信">
+
+
+
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

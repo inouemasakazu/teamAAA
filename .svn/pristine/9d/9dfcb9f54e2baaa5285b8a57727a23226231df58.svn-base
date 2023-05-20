@@ -1,0 +1,40 @@
+package action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.AdminBean;
+import tool.Action;
+
+//管理者登録内容確認
+
+
+//名称チェックまだ
+
+public class AdminCheckAction extends Action{
+	public String execute(
+			HttpServletRequest request,HttpServletResponse response)throws Exception{
+		HttpSession session = request.getSession();
+
+
+
+	String adminId = request.getParameter("adminID");
+	String adminPass =request.getParameter("adminPass");
+	String adminName = request.getParameter("adminName");
+	AdminBean aab = new AdminBean();
+
+	aab.setadminId(adminId);
+	aab.setadminPass(adminPass);
+	aab.setadminName(adminName);
+
+	//セッション？　変数どこのだ
+	session.setAttribute("adaccount",  aab);
+
+
+	//JSPファイル戻り場所と名前かえて～
+	return "AdRegister-Comfirm.jsp";
+
+	}
+
+}

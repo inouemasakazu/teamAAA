@@ -1,0 +1,16 @@
+<%@page language="java" contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<div class="login-form">
+		<p>ユーザー登録が完了しました</p>
+	    <a href="">ユーザーメニュに進む</a>
+	    <a href="">トップページに戻る</a>
+    </div>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,29 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@page import="bean.ReviewBean"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% ReviewBean review =(ReviewBean)session.getAttribute("reviewCode"); %>
+
+<%@include file="../html/header.html" %>
+<%@include file="../menu/header.jsp" %>
+
+<main class="media">
+	<h1>レビュー削除</h1>
+	<div class="review-post-in">
+		<p>次のレビューを削除しますか？</p>
+	    <!-- 削除する mediaCode を次のactionに飛ばします。 -->
+		<form action="../review/ReviewDelete.action" method="post">
+				<div class="review-list">
+					<h2>${rbconf.userName}さん</h2>
+					<p>${rbconf.reviewDate}に日本でレビュー済み</p>
+					<p>${rbconf.reviewContent}</p>
+				</div>
+			<input type="submit" value="削除" class="review-del-btn">
+		</form>
+	</div>
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

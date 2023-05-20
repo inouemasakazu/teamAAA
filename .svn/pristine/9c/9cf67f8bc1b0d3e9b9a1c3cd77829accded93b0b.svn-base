@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+
+<style type="text/css">
+	<%@include file="../css/common.css" %>
+	<%@include file="../css/index.css" %>
+	<%@include file="../css/login.css" %>
+</style>
+<title>Insert title here</title>
+</head>

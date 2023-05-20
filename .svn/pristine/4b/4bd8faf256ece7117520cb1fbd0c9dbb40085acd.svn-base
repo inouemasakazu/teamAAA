@@ -1,0 +1,257 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import bean.AdminBean;
+import bean.UserBean;
+
+
+
+public class AdminDAO extends DAO{
+	//管理者ログイン
+	public AdminBean adminLogin(String login, String password) throws Exception {
+		AdminBean admin = null;
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"select * from admin where admin_id=? and admin_pass=?");
+			st.setString(1,login);
+		    st.setString(2, password);
+
+		    try {
+		    ResultSet rs=st.executeQuery();
+		    while (rs.next()) {
+		    	AdminBean ab = new AdminBean();
+		    	ab.setadminCode(rs.getInt("admin_code"));
+		    	ab.setadminId(rs.getString("admin_id"));
+		    	ab.setadminPass(rs.getString("admin_pass"));
+		    	ab.setadminName(rs.getString("admin_name"));
+		    	ab.setadminDelete(rs.getInt("admin_delete"));
+		    	ab.setadminDate(rs.getString("admin_date"));
+
+			 }
+			 return admin;
+
+		    }catch (Exception e) {
+		    	throw e;
+		    }finally {
+		    	st.close();
+		    	con.close();
+		    }
+	}
+
+	//idが重複していないか確認
+	public int idCheck(String adminId)throws Exception{
+
+		int line = 0 ;
+		//sql実行前処理
+		AdminBean admin1 = null;
+
+		try(Connection con = getConnection();){
+			PreparedStatement st = con.prepareStatement(
+					"select from admin where admin_id = ?");
+			st.setString(1, adminId);
+
+			//sql実行
+			ResultSet rs = st.executeQuery();
+
+			//sql実行結果確認
+			while(rs.next()) {
+				line++;
+			}
+			st.close();
+	    	con.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return line;
+	}
+
+	//ニックネームが重複していないか確認するメソッド
+		public int nameCheck(String adminName)throws Exception{
+
+			int line = 0 ;
+			//sql実行前処理
+			UserBean admin2 = null;
+
+			try(Connection con = getConnection();){
+				PreparedStatement st = con.prepareStatement(
+						"select from admin where admin_name = ?");
+				st.setString(1, adminName);
+
+				//sql実行
+				ResultSet rs = st.executeQuery();
+
+				//sql実行結果確認
+				while(rs.next()) {
+					line++;
+				}
+				st.close();
+		    	con.close();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			return line;
+		}
+
+
+//	//管理者ニックネーム検索
+//	public List<AdminBean>searchAdminNickname(String adminname)throws
+//		Exception{
+//		List<AdminBean> list = new ArrayList<AdminBean>();
+//		Connection con = getConnection();
+//		PreparedStatement st = con.prepareStatement(
+//				"select * from admin us where  usNickname like ?");
+//		st.setNString(1,"%"+adminname + "%");
+//		try {
+//			ResultSet rs = st.executeQuery();
+//			while(rs.next()) {
+//				AdminBean ab = new AdminBean();
+//		    	ab.setadminCode(rs.getString("usAccount"));
+//		    	ab.setadminId(rs.getString("adminId"));
+//		    	ab.setadminPass(rs.getString("adminPass"));
+//		    	ab.setadminName(rs.getString("adminName"));
+////		    	ab.setUsDelete(rs.getInt("usdelete"));
+//		    	ab.setadminDate(rs.getString("adminDate"));
+//
+//			}
+//			return list;
+//
+//		}catch (Exception e) {
+//			throw e;
+//		}finally {
+//			st.close();
+//			con.close();
+//		}
+//	}
+
+//	//管理者アカウントコード検索
+//	public int searchAdminAccount(String usAccount) throws
+//Exception{
+//		List<AdminBean> list = new ArrayList<AdminBean>();
+//		Connection con = getConnection();
+//		PreparedStatement st = con.prepareStatement(
+//				"select * from usAccount where usDelete = 0 and usAccount =?");
+//		st.setNString(1, usAccount);
+//		try {
+//			ResultSet rs  = st.executeQuery();
+//			while(rs.next()) {
+//				AdminBean ab = new AdminBean();
+//				ab.setadminCode(rs.getString("usAccount"));
+//		    	ab.setadminId(rs.getString("adminId"));
+//		    	ab.setadminPass(rs.getString("adminPass"));
+//		    	ab.setadminName(rs.getString("adminName"));
+////		    	ab.setUsDelete(rs.getInt("usdelete"));
+//		    	ab.setadminDate(rs.getString("adminDate"));
+//
+//		    	list.add(ab);
+//			}
+//			return list;
+//		}
+//
+//		}catch (Exception e) {
+//			throw e;
+//		} finally {
+//			st.close();
+//			con.close();
+//
+//		}
+
+	//管理者新規登録
+	public int register(AdminBean ab1) throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"insert into admin values(null,?,?,?,1,now()");
+		try {
+			  //st.setString(1,rb.getadminCode()) = null;
+			st.setString(1,ab1.getadminId());
+			st.setString(2,ab1.getadminPass());
+			st.setString(3,ab1.getadminName());
+//			st.setInt(4,ab.getadminDelete());
+//			st.setString(5,ab.getadminDate());
+			int line = st.executeUpdate();
+
+			return line;
+			}catch(Exception e) {
+				throw e;
+			}finally {
+				st.close();
+				con.close();
+			}
+
+		}
+
+	//管理者削除
+		public int delete(String adminId)throws Exception{
+			Connection con = null;
+			PreparedStatement st = null;
+			int line= 0;
+
+			try {
+				 con = getConnection();
+				 st = con.prepareStatement(
+						"delete  from admin where admin_id = ?;");
+
+				st.setString(1, adminId);
+				line = st.executeUpdate();
+
+				}catch (Exception e) {
+					throw e;
+				}finally {
+					st.close();
+					con.close();
+				}
+			return line;
+			}
+
+
+
+	//管理者編集
+	public int edit(AdminBean ab3) throws Exception{
+		Connection con = getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"update admin set admin_id = ?, admin_pass = ?, admin_name = ? where admin_code = ?;");
+		try {
+			st.setString(1,ab3.getadminId());
+			st.setString(2,ab3.getadminPass());
+			st.setString(3,ab3.getadminName());
+			st.setInt(4,ab3.getadminCode());
+
+			int line = st.executeUpdate();
+
+			return line;
+
+			}catch (Exception e) {
+				int i =0;
+				return i;
+			}finally {
+				st.close();
+				con.close();
+			}
+	}
+}
+////管理者退会
+//	public int delete(AdminBean ab2)throws Exception{
+//		Connection con = getConnection();
+//		PreparedStatement st = con.prepareStatement(
+//				"update admin set admin_delete = 1 where admin_code = ? and admin_name = ?;");
+//		try {
+//			st.setString(1,ab2.getadminCode());
+//			st.setString(2,ab2.getadminName());
+//			int line = st.executeUpdate();
+//
+//		return line;
+//
+//		}catch (Exception e) {
+//			throw e;
+//		}finally {
+//			st.close();
+//			con.close();
+//		}
+//	}
+
+
+

@@ -1,0 +1,10 @@
+package action;
+
+
+
+//作品編集処理
+
+
+public class MedEditAction {
+
+}

@@ -1,0 +1,35 @@
+package user;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.MediaBean;
+import bean.ReviewBean;
+import dao.MediaDAO;
+import dao.ReviewDAO;
+import tool.Action;
+
+public class UserReviewDeleteAction extends Action {
+	public String execute(
+		HttpServletRequest request,HttpServletResponse response
+		)throws Exception{
+	Integer reviewCode = Integer.parseInt(request.getParameter("reviewCode"));
+	String medCode =  request.getParameter("medCode");
+	int medCode2 = Integer.parseInt(medCode);
+	ReviewBean rd = new ReviewBean();
+	rd.setreviewCode(reviewCode);
+	ReviewDAO dao_review = new ReviewDAO();
+	dao_review.reviewDelete(rd);
+	ReviewDAO dao_review2 = new ReviewDAO();
+	MediaDAO dao_media = new MediaDAO();
+	List<MediaBean> list = dao_media.create(medCode2);
+	List<ReviewBean> list_Review2 = dao_review2.indicate("medCode2");
+	request.setAttribute("list",list);
+	request.setAttribute("list_review",list_Review2);
+	return "MeDelete-Complete.jsp";
+	//↑該当JSP作成後編集//
+
+	}
+
+}

@@ -1,0 +1,13 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="common">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<p>管理者ログアウトしますか？</p>
+	<a href="../admin/AdminLogout.action">ログアウト</a>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

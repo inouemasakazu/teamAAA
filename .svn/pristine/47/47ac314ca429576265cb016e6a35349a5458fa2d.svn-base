@@ -1,0 +1,32 @@
+package list;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.AdminBean;
+import dao.AdminDAO;
+import tool.Action;
+
+public class AdminListAction extends Action {
+
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String adminCode = request.getParameter("adminCode");
+
+		AdminDAO dao = new AdminDAO();
+
+		if((adminCode.equals(""))) {
+			List<AdminBean>list = dao.adminlist(adminCode);
+			request.setAttribute("alist",list);
+
+			//あとでJSPのページ～
+			return "../commonlist/adminlist.jsp";
+		}
+
+				//戻りJSPのページいれて～
+				return"../common/index.jsp";
+	}
+}

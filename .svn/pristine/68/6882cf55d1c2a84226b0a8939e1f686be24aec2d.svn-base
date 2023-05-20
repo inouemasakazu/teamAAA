@@ -1,0 +1,26 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<main class="review">
+	<h1>レビュー削除</h1>
+	<div class="">
+		<p>次のレビューを削除しますか？</p>
+	    <!-- 削除する mediaCode を次のactionに飛ばします。 -->
+		<form action="../media/MedDelete.action" method="post">
+		<input type ="hidden" name="mediaCode"value="${media.mediaCode}">
+
+			${media.medTitle}
+
+			<p><input type="submit" value="削除"></p>
+		</form>
+
+
+	    <a href="mediapage.jsp">個別作品ページに戻る</a>
+	</div>
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,26 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="common">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+★レビュー投稿内容確認
+<table>
+<tr>
+<td>レビュー内容</td>
+<td>ユーザーニックネーム</td>
+</tr>
+</table>
+<br>
+以上の内容で投稿しますか？
+<br>
+<br>
+
+
+<input type="button" onclick="history.back()" value="修正">
+<input type="submit" value="投稿">
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

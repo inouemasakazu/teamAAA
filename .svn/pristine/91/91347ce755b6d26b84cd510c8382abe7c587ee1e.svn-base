@@ -1,0 +1,20 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@include file="../html/header.html" %>
+<body id="common">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<div class="login-form">
+		<p>こんにちは、${user.userId}さん</p>
+
+		<a href="../common/index.jsp">ホームに戻る</a>
+		<a href="../user-top.jsp">ユーザーメニューに移動する</a>
+		<a href="user-edit-in.jsp">ユーザー情報変更に移動する</a>
+	</div>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

@@ -1,0 +1,9 @@
+package action;
+
+
+//管理者情報処理
+
+
+public class AdminEditAction {
+
+}

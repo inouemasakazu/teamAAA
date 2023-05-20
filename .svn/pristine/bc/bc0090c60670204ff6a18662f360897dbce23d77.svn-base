@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@include file="../menu/header.jsp" %>
+    <%@include file="../html/header.html" %>
+<!DOCTYPE html>
+
+
+<!--作品情報本体ここから -->
+
+<!-- 作品のタイトルを上部に表示 -->
+<title>${p.medTitle}</title>
+
+<!-- 作品メインデータのテーブルここから -->
+
+<c:forEach var="p" items="${list}">
+
+<table>
+	<tbody>
+		<tr>
+			<td>${p.medCode}</td>
+			<td colspan="2">${p.medTitle}</td>
+		</tr>
+		<tr>
+			<td rowspan="5"> </td>
+
+			<!--画像　<td>${p.medImage}</td> -->
+			<td rowspan="5"><img src ="../img/testimage.jpg" alt="${p.medTitle}" width="150" height="200"></td>
+			<td>${p.medMedia}</td>
+		</tr>
+		<tr>
+			<td>${p.medGenre1}■ ${p.medGenre2}</td>
+		</tr>
+		<tr>
+			<td>発売日　${p.medRelease}</td>
+		</tr>
+		<tr>
+			<td>${p.medInfo}</td>
+		<tr>
+			<td>登録日　${p.medDate}</td>
+		</tr>
+	</tbody>
+</table>
+
+</c:forEach>
+
+<!-- 作品メインデータのテーブルここまで -->
+
+
+
+<!-- ここからレビュー -->
+
+<!-- レビュー投稿 条件分岐でログインアカウントとゲストの表示が変わります。 -->
+<c:if test="${!(!empty user || !empty admin)}">
+	<p>レビューを投稿するには利用者登録が必要です。</p>
+	<a href="../user/user-register-in.jsp" class="login-area">登録ページへ</a>
+</c:if>
+<c:if test="${!empty user || !empty admin}">
+	<a href="../review/review-post-in.jsp" class="login-area">レビューを書く</a>
+</c:if>
+
+<c:forEach var="p" items="${relist}">
+<!-- <table>
+	<tr>
+
+	</tr>
+</table> -->
+
+<table>
+		<tr>
+			<td>${p.reviewCode}</td>
+			<td>${p.userCode}💛${p.reviewDate}</td>
+		</tr>
+		<tr>
+			<td colspan="2">${p.reviewContent}</td>
+		</tr>
+</table>
+</c:forEach>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

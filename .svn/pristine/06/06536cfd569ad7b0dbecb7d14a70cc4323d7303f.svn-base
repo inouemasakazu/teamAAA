@@ -1,0 +1,27 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<main class="">
+	<h1>管理者リスト</h1>
+
+	<c:forEach var="p" items="${alist}">
+	<div class="media-row">
+	管理者コード　■　${p.adminCode} <BR>
+	管理者ーID　■　${p.adminId}  <BR>
+	管理者パスワード　■　${p.adminPass} <BR>
+	ニックネーム　■　${p.adminName} <BR>
+	登録日　■　${p.adminDate}  <BR>
+	</div>
+	<form action="../admin/AdminDeleteList.action" method="post">
+		<button type="submit" name="adminCode" value="${p.adminCode}">削除</button>
+	</form>
+	</c:forEach>
+
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
+

@@ -1,0 +1,25 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<div class="main">
+	<h1>ユーザー退会ページ</h1>
+	<div class="login-form">
+		<form action="/UserRegistration/RegisterUser" method="post">
+	       ログインID:<input type="text" name="id"><br>
+	       パスワード:<input type="password" name="pass"><br>
+	       名前:<input type="text" name="name"><br>
+	       <input type="submit" value="確定">
+	    </form>
+
+		<p>退会しない</p>
+	    <a href="user-top">ユーザーメニューに戻る</a>
+	</div>
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

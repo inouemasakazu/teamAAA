@@ -1,0 +1,40 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@ page import="bean.UserBean"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jsti/core" %>
+<% UserBean userCode = (UserBean)session.getAttribute("userCode") %>
+
+<%@include file="../../html/header.html" %>
+<body id="">
+<%@include file="../../menu/header.jsp" %>
+
+
+	<div class="form-area">
+		<table>
+			<tr>
+				<th>ID</th>
+				<td>:${userCode.userId}</td>
+			</tr>
+
+			<tr>
+				<th>パスワード</th>
+				<td>${userCode.userPass}</td>
+			</tr>
+
+			<tr>
+				<th>ユーザーネーム</th>
+				<td>${userCode.userName}</td>
+			</tr>
+		</table>
+
+		<p>この内容で登録してもよろしいですか？</p>
+	    <form action="UserRegisterAction">
+	    	<input type="submit" value="確定">
+	    </form>
+    </div>
+
+    <a href="/UserRegistration/RegisterUser">戻る</a>
+    <a href="/UserRegistration/RegisterUser?action=done">登録</a>
+
+<%@include file="../../menu/footer.jsp" %>
+<%@include file="../../html/footer.html" %>

@@ -1,0 +1,20 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<div class="main">
+	<div class="login-form">
+
+		${message1}
+		${message2}
+		<p>※退会できない管理者です。
+		   セキュリティの為、ログアウトしました。</p>
+
+		<a href="../common/index.jsp">トップページに移動する</a>
+	</div>
+</div>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

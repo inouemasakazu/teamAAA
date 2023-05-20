@@ -1,0 +1,26 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+<main class="">
+	<h1>ユーザーリスト</h1>
+<br>
+<br>
+
+	<c:forEach var="p" items="${ulist}">
+<div class="media-row">
+	ユーザーコード　■　${p.userCode} <BR>
+	ユーザーID　■　${p.userId}  <BR>
+	ユーザーパスワード　■　${p.userPass} <BR>
+	ニックネーム　■　${p.userName} <BR>
+	登録日　■　${p.userDate}  <BR>
+</div>
+	</c:forEach>
+
+</main>
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
+

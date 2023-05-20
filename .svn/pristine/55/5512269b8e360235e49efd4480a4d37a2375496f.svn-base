@@ -1,0 +1,29 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@include file="../html/header.html" %>
+<body id="index">
+<%@include file="../menu/header.jsp" %>
+
+<main class="index">
+	<div class="first-view">
+		<div class="first-view-text">
+			<h1>記憶に残るあの時の感動を...</h1>
+			<p>往年の名作から、話題になった最新作も！</p>
+
+			<div class="link-button-area">
+            	<a  class="link-button" href="../search/search.jsp">検索</a>
+	        	<form action="../action/MedSearch.action" method="post" class="search_container">
+				  	<!-- <input type="text" size="25" placeholder="キーワード検索"> -->
+				  	<input type="text" name="medTitle" size="25" placeholder="キーワード検索">
+				  	<input type="submit" value="&#xf002">
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+
+
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

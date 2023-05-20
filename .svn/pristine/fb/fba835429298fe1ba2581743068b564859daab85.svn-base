@@ -1,0 +1,22 @@
+package action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+//まだこぴぺのまま
+public class AdminLogoutAction extends Action{
+	public String execute(
+			HttpServletRequest request,HttpServletResponse response)throws Exception{
+		HttpSession session = request.getSession();
+
+
+		if(session.getAttribute("adaccount")! =null) {
+			session.remobeAttribute("adaccount");
+			return "AllLogput-complete.jsp";
+		}
+		return "AdLogout-error.jsp";
+		}
+
+}

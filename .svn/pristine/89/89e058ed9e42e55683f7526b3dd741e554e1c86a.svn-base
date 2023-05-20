@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@include file="../menu/header.jsp" %>
+    <%@include file="../html/header.html" %>
+<!DOCTYPE html>
+
+
+<!--作品情報本体ここから -->
+
+<!-- 作品のタイトルを上部に表示 -->
+<title>${p.medTitle}</title>
+
+<!-- 作品メインデータのテーブルここから -->
+
+
+<c:forEach var="p" items="${list}">
+<table>
+	<tbody>
+		<tr>
+			<td>${p.medCode}</td>
+			<td colspan="2">${p.medTitle}</td>
+		</tr>
+		<tr>
+		<!-- ↓飾り用空白セル -->
+			<td rowspan="5">　</td>
+			<td rowspan="5">${p.medImage}</td>
+			<td>${p.medMedia}
+</td>
+		</tr>
+		<tr>
+			<td>${p.medGenre1} ${p.medGenre2}</td>
+		</tr>
+		<tr>
+			<td>${p.medRelease}</td>
+		</tr>
+		<tr>
+			<td>${p.medInfo}</td>
+		</tr>
+		<tr>
+			<td>${p.medDate}
+</td>
+		</tr>
+	</tbody>
+</table>
+
+</c:forEach>
+
+<!-- 作品メインデータのテーブルここまで -->
+
+
+
+<!-- ここからレビュー -->
+
+
+<!-- ログインしてたら登録ページ、してなければログインor新規登録ページへ（未完成） -->
+<p><a href="">レビュー新規登録【ログインが必要です】</a></p>
+
+
+
+<!-- ここからレビュー一覧をテーブル表記 -->
+
+<!-- 変数は仮置き -->
+
+<c:forEach var="r" items="${review}">
+
+<table>
+	<tbody>
+		<tr>
+			<td>${r.reviewCode}</td>
+			<td>${r.userName}💛${r.reviewDate}</td>
+		</tr>
+		<tr>
+			<td colspan="2">${r.reviewContent}</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</c:forEach>
+
+
+
+
+
+<!-- ここまでレビュー -->
+
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>

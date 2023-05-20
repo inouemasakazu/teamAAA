@@ -1,0 +1,9 @@
+package action;
+
+
+
+//削除ユーザー選択処理
+
+public class UserSelectAction {
+
+}

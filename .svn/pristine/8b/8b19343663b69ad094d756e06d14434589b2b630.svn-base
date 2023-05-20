@@ -1,0 +1,61 @@
+package review;
+
+
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.ReviewBean;
+import dao.ReviewDAO;
+import tool.Action;
+
+public class ReviewRegisterAction extends Action {
+	public String execute(
+
+HttpServletRequest request,HttpServletResponse response)
+	throws Exception{
+
+		int line = 0;
+		HttpSession session = request.getSession();
+
+		int medCode = Integer.parseInt(request.getParameter("medCode"));
+		String reviewContent =request.getParameter("reviewContent");
+		Integer userCode = (Integer)session.getAttribute("userCode");
+
+		ReviewBean rb = new ReviewBean();
+	    rb.setuserCode(userCode);
+	    rb.setmedCode(medCode);
+	    rb.setreviewContent(reviewContent);
+
+	    if(reviewContent==null) {
+	    	 return "review-post-error.jsp";
+	    }
+
+
+	 ReviewDAO dao = new ReviewDAO();
+
+	 try {
+		 line = dao.reviewRegister(rb);
+	 }catch(SQLException e) {
+		 e.printStackTrace();
+		 String txt ="SQLException:不正な文字列です。";
+		 String message = "不正な文字列です。";
+		 request.setAttribute("message", message);
+		 System.out.println(txt);
+
+		 return "../media/mediapage.jsp";
+	}
+	 if(line != 1) {
+		 return "review-post-error.jsp";
+	 }
+	 request.removeAttribute("medCode");
+	 request.setAttribute("medcode", medCode);
+
+	 return "review-post-out.jsp";
+
+
+
+	}
+}

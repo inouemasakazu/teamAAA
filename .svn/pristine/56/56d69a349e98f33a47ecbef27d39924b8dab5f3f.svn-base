@@ -1,0 +1,35 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<%@page import="bean.MediaBean" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% MediaBean media =(MediaBean)session.getAttribute("mediaCode"); %>
+
+<%@include file="../html/header.html" %>
+<body id="">
+<%@include file="../menu/header.jsp" %>
+
+
+<div class="main">
+	<h1>作品削除ページ</h1>
+	<div class="login-form">
+
+	    <p>次の作品を削除しますか？</p>
+	    <!-- 削除する mediaCode を次のactionに飛ばします。 -->
+		<form action="../media/MedDelete.action" method="post">
+		<input type ="hidden" name="mediaCode"value="${media.medCode}">
+
+			${media.medTitle}
+
+			<p><input type="submit" value="削除"></p>
+		</form>
+
+
+	    <a href="mediapage.jsp">個別作品ページに戻る</a>
+	</div>
+</div>
+
+
+<%@include file="../menu/footer.jsp" %>
+<%@include file="../html/footer.html" %>
